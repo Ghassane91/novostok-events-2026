@@ -1,1 +1,1728 @@
-<!-- Novostok Events 2026 -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novostok – Cartographie Événementielle Direction 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bleu-nuit: #07101f;
+    --bleu-prof: #0d1b33;
+    --bleu-moyen: #14274e;
+    --bleu-card: #111d35;
+    --or: #c9a84c;
+    --or-clair: #e8c97a;
+    --or-pale: rgba(201,168,76,0.12);
+    --or-border: rgba(201,168,76,0.3);
+    --texte: #dce4f0;
+    --texte-dim: #8a9ab5;
+    --rouge-strat: #d64a4a;
+    --orange-haute: #d68830;
+    --vert-moy: #3a7a5a;
+    --radius: 10px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bleu-nuit);
+    color: var(--texte);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ========== HEADER ========== */
+  header {
+    background: linear-gradient(135deg, var(--bleu-prof) 0%, #0a1a30 100%);
+    border-bottom: 1px solid var(--or-border);
+    padding: 0;
+  }
+
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 28px 40px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .logo-zone { display: flex; align-items: center; gap: 18px; }
+
+  .logo-mark {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--or) 0%, var(--or-clair) 100%);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--bleu-nuit);
+    letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+
+  .logo-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--or-clair);
+    letter-spacing: 2px;
+    line-height: 1.1;
+  }
+
+  .logo-text p {
+    font-size: 11px; font-weight: 300;
+    color: var(--texte-dim);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 11px;
+    color: var(--texte-dim);
+    letter-spacing: 0.5px;
+  }
+
+  .header-meta strong { color: var(--or); }
+
+  /* ========== KPI BAR ========== */
+  .kpi-bar {
+    background: var(--bleu-moyen);
+    border-bottom: 1px solid var(--or-border);
+  }
+
+  .kpi-inner {
+    max-width: 1400px; margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+  }
+
+  .kpi {
+    flex: 1;
+    padding: 18px 24px;
+    border-right: 1px solid var(--or-border);
+    text-align: center;
+    transition: background 0.2s;
+  }
+
+  .kpi:last-child { border-right: none; }
+
+  .kpi-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 700;
+    color: var(--or);
+    line-height: 1;
+  }
+
+  .kpi-label {
+    font-size: 10px;
+    color: var(--texte-dim);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 4px;
+  }
+
+  .kpi-sub {
+    font-size: 11px;
+    color: var(--or-clair);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  /* ========== MAIN ========== */
+  main { max-width: 1400px; margin: 0 auto; padding: 32px 40px 60px; }
+
+  /* ========== READING BLOCK ========== */
+  .lecture-direction {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(14,27,52,0.8) 100%);
+    border: 1px solid var(--or-border);
+    border-left: 4px solid var(--or);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+
+  .lecture-direction h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--or);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .lecture-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .lecture-col h3 {
+    font-size: 11px;
+    color: var(--or-clair);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--or-border);
+  }
+
+  .lecture-col p, .lecture-col li {
+    font-size: 12.5px;
+    color: var(--texte-dim);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .lecture-col ul { padding-left: 14px; }
+
+  .lecture-col li { margin-bottom: 4px; }
+
+  .badge-inline {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-strat { background: rgba(214,74,74,0.2); color: #e87070; border: 1px solid rgba(214,74,74,0.4); }
+  .badge-haute { background: rgba(214,136,48,0.2); color: #e8a060; border: 1px solid rgba(214,136,48,0.4); }
+  .badge-moy { background: rgba(58,122,90,0.2); color: #70c090; border: 1px solid rgba(58,122,90,0.4); }
+  .badge-maroc { background: rgba(201,168,76,0.15); color: var(--or-clair); border: 1px solid var(--or-border); }
+  .badge-afrique { background: rgba(80,100,200,0.2); color: #a0b0f0; border: 1px solid rgba(80,100,200,0.4); }
+  .badge-intl { background: rgba(60,80,120,0.3); color: #90a8d0; border: 1px solid rgba(60,80,120,0.5); }
+
+  /* ========== CONTROLS ========== */
+  .controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .controls-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--texte-dim);
+    margin-right: 4px;
+  }
+
+  .filter-btn {
+    padding: 7px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: var(--bleu-card);
+    color: var(--texte-dim);
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .filter-btn:hover { border-color: var(--or); color: var(--or-clair); }
+
+  .filter-btn.active {
+    background: var(--or-pale);
+    border-color: var(--or);
+    color: var(--or-clair);
+  }
+
+  .controls-sep {
+    width: 1px; height: 28px;
+    background: var(--or-border);
+    margin: 0 4px;
+  }
+
+  /* ========== TIMELINE ========== */
+  .timeline { display: flex; flex-direction: column; gap: 32px; }
+
+  .month-section {}
+
+  .month-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .month-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--or);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .month-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--or-border), transparent);
+  }
+
+  .month-count {
+    font-size: 11px;
+    color: var(--texte-dim);
+    background: var(--bleu-moyen);
+    border: 1px solid var(--or-border);
+    padding: 2px 10px;
+    border-radius: 20px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  /* ========== EVENT CARD ========== */
+  .event-card {
+    background: var(--bleu-card);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .event-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--or), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .event-card:hover {
+    border-color: var(--or-border);
+    background: rgba(20, 39, 78, 0.8);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+
+  .event-card:hover::before { opacity: 1; }
+
+  .event-card.hidden { display: none; }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .card-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .card-priority {
+    padding: 2px 9px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .priority-strat { background: rgba(214,74,74,0.2); color: #e87070; border: 1px solid rgba(214,74,74,0.4); }
+  .priority-haute { background: rgba(214,136,48,0.2); color: #e8a060; border: 1px solid rgba(214,136,48,0.4); }
+  .priority-moy { background: rgba(58,122,90,0.2); color: #70c090; border: 1px solid rgba(58,122,90,0.4); }
+
+  .card-zone {
+    padding: 2px 9px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .zone-maroc { background: rgba(201,168,76,0.15); color: var(--or-clair); border: 1px solid var(--or-border); }
+  .zone-afrique { background: rgba(80,100,200,0.2); color: #a0b0f0; border: 1px solid rgba(80,100,200,0.4); }
+  .zone-intl { background: rgba(60,80,120,0.3); color: #90a8d0; border: 1px solid rgba(60,80,120,0.5); }
+
+  .card-countdown {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: var(--texte-dim);
+    white-space: nowrap;
+  }
+
+  .card-countdown span { color: var(--or-clair); font-weight: 600; }
+
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--texte);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .card-dates {
+    font-size: 12px;
+    color: var(--texte-dim);
+    margin-bottom: 10px;
+  }
+
+  .card-dates strong { color: var(--or-clair); }
+
+  .card-location {
+    font-size: 12px;
+    color: var(--texte-dim);
+    display: flex; align-items: center; gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .card-location .loc-icon { color: var(--or); font-size: 13px; }
+
+  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+
+  .tag {
+    padding: 2px 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    font-size: 10px;
+    color: var(--texte-dim);
+  }
+
+  .card-reco {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  .reco-stand { background: rgba(201,168,76,0.2); color: var(--or-clair); border: 1px solid var(--or-border); }
+  .reco-delegation { background: rgba(140,80,200,0.2); color: #c090f0; border: 1px solid rgba(140,80,200,0.4); }
+  .reco-visiter { background: rgba(60,120,200,0.15); color: #80b0e0; border: 1px solid rgba(60,120,200,0.3); }
+
+  /* ========== MODAL ========== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(4,8,20,0.85);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 40px 20px;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+
+  .modal {
+    background: var(--bleu-prof);
+    border: 1px solid var(--or-border);
+    border-radius: 14px;
+    width: 100%;
+    max-width: 820px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    animation: modalIn 0.25s ease;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, var(--bleu-moyen) 0%, #0d1b33 100%);
+    padding: 28px 32px 24px;
+    border-bottom: 1px solid var(--or-border);
+    position: relative;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--texte);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .modal-close:hover { background: rgba(214,74,74,0.3); border-color: rgba(214,74,74,0.5); }
+
+  .modal-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--texte);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .modal-edition {
+    font-size: 13px;
+    color: var(--texte-dim);
+    margin-bottom: 12px;
+  }
+
+  .modal-meta-row {
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+
+  .modal-meta-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: var(--texte-dim);
+  }
+
+  .modal-meta-item strong { color: var(--or-clair); }
+
+  .modal-body { padding: 28px 32px; }
+
+  .modal-section { margin-bottom: 24px; }
+
+  .modal-section-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--or);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--or-border);
+  }
+
+  .modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .modal-field {}
+
+  .modal-field-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--texte-dim);
+    margin-bottom: 2px;
+  }
+
+  .modal-field-value {
+    font-size: 13px;
+    color: var(--texte);
+  }
+
+  .modal-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .modal-tag {
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 5px;
+    font-size: 11px;
+    color: var(--texte-dim);
+  }
+
+  .modal-reco-block {
+    background: var(--or-pale);
+    border: 1px solid var(--or-border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+
+  .modal-reco-action {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .modal-reco-text {
+    font-size: 13px;
+    color: var(--texte-dim);
+    line-height: 1.6;
+  }
+
+  .modal-confirmer {
+    background: rgba(214,136,48,0.08);
+    border: 1px solid rgba(214,136,48,0.25);
+    border-radius: 8px;
+    padding: 14px 18px;
+  }
+
+  .modal-confirmer-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #e8a060;
+    margin-bottom: 8px;
+  }
+
+  .modal-confirmer ul {
+    padding-left: 16px;
+  }
+
+  .modal-confirmer li {
+    font-size: 12px;
+    color: var(--texte-dim);
+    margin-bottom: 4px;
+  }
+
+  .modal-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 18px;
+    background: var(--or-pale);
+    border: 1px solid var(--or-border);
+    border-radius: 6px;
+    color: var(--or-clair);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-top: 4px;
+  }
+
+  .modal-link:hover {
+    background: rgba(201,168,76,0.25);
+    color: var(--or);
+  }
+
+  /* ========== STATUT BADGE ========== */
+  .statut-confirme { background: rgba(40,160,80,0.15); color: #60d090; border: 1px solid rgba(40,160,80,0.3); }
+  .statut-aconfirmer { background: rgba(200,160,40,0.15); color: #d0b050; border: 1px solid rgba(200,160,40,0.3); }
+
+  /* ========== NO RESULTS ========== */
+  .no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--texte-dim);
+    font-size: 14px;
+    display: none;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    border-top: 1px solid var(--or-border);
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--texte-dim);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  footer strong { color: var(--or); }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .header-inner { padding: 20px 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .kpi-inner { padding: 0 20px; flex-wrap: wrap; }
+    .kpi { min-width: 50%; border-right: none; border-bottom: 1px solid var(--or-border); }
+    main { padding: 20px 20px 40px; }
+    .lecture-cols { grid-template-columns: 1fr; }
+    .modal-grid { grid-template-columns: 1fr; }
+    .modal { border-radius: 0; }
+    .modal-overlay { padding: 0; }
+    .modal-body { padding: 20px; }
+    .modal-header { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo-zone">
+      <div class="logo-mark">N</div>
+      <div class="logo-text">
+        <h1>NOVOSTOK</h1>
+        <p>Intelligence Économique &amp; Cybersécurité</p>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div>Cartographie Événementielle Direction</div>
+      <div>Défense · Sécurité · Technologie · Afrique</div>
+      <div>Document au <strong id="today-date"></strong></div>
+    </div>
+  </div>
+</header>
+
+<!-- KPI BAR -->
+<div class="kpi-bar">
+  <div class="kpi-inner">
+    <div class="kpi">
+      <div class="kpi-val" id="kpi-total">—</div>
+      <div class="kpi-label">Événements à venir</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val" id="kpi-maroc">—</div>
+      <div class="kpi-label">Événements au Maroc</div>
+      <div class="kpi-sub">Candidats stand</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val" id="kpi-strat">—</div>
+      <div class="kpi-label">Priorité Stratégique</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val" id="kpi-prochain">—</div>
+      <div class="kpi-label">Prochain événement</div>
+      <div class="kpi-sub" id="kpi-prochain-nom">—</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- LECTURE DIRECTION -->
+  <div class="lecture-direction">
+    <h2>⬧ Lecture pour la Direction</h2>
+    <div class="lecture-cols">
+      <div class="lecture-col">
+        <h3>Top 3 à arbitrer en priorité</h3>
+        <ul>
+          <li><span class="badge-inline badge-strat">Stratégique</span> <strong style="color:var(--texte)">SIT Africa Forum</strong> — 9–12 juin 2026, Marrakech. <em>Décision stand urgente : J–2.</em></li>
+          <li><span class="badge-inline badge-strat">Stratégique</span> <strong style="color:var(--texte)">Marrakech Air Show</strong> — 7–10 oct. 2026. Sous patronage royal. <em>Dossier délégation à préparer maintenant.</em></li>
+          <li><span class="badge-inline badge-strat">Stratégique</span> <strong style="color:var(--texte)">Préventica Maroc</strong> — 10–12 nov. 2026, Casablanca. <em>Candidature stand à déposer dès juillet.</em></li>
+        </ul>
+      </div>
+      <div class="lecture-col">
+        <h3>Candidats stand au Maroc</h3>
+        <ul>
+          <li><strong style="color:var(--texte)">SIT Africa Forum</strong> — 70+ éditeurs cyber, 350 RSSI. Alignement direct avec l'offre Novostok.</li>
+          <li><strong style="color:var(--texte)">Préventica Maroc</strong> — 200 exposants, 6 500 visiteurs pro. Sécurité + cybersécurité + IA.</li>
+          <li><strong style="color:var(--texte)">Africa Tech Show Morocco</strong> — B2B tech Casablanca. À confirmer en priorité avec les organisateurs.</li>
+          <li><strong style="color:var(--texte)">Marrakech Air Show</strong> — Délégation institutionnelle prioritaire, stand si partenariat marocain actif.</li>
+        </ul>
+      </div>
+      <div class="lecture-col">
+        <h3>Méthode d'accès aux invitations</h3>
+        <ul>
+          <li><strong style="color:var(--texte)">Accréditation professionnelle</strong> : Eurosatory, GSX, ISE London, Milipol Qatar → inscription directe sur site officiel.</li>
+          <li><strong style="color:var(--texte)">Lettre de mission / patronage</strong> : Marrakech Air Show → contact Ministère Défense Maroc ou attaché défense ambassade.</li>
+          <li><strong style="color:var(--texte)">Via réseau éditeurs</strong> : SIT Africa Forum → invitation RSSI par co-parrainage d'un éditeur partenaire.</li>
+          <li><strong style="color:var(--texte)">Team France Export</strong> : Milipol Qatar → Pavillon France via Business France / CCI Seine-et-Marne.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTRES -->
+  <div class="controls">
+    <span class="controls-label">Zone</span>
+    <button class="filter-btn active" data-filter="zone" data-value="all">Toutes</button>
+    <button class="filter-btn" data-filter="zone" data-value="Maroc">Maroc</button>
+    <button class="filter-btn" data-filter="zone" data-value="Afrique">Afrique</button>
+    <button class="filter-btn" data-filter="zone" data-value="International">International</button>
+    <div class="controls-sep"></div>
+    <span class="controls-label">Thème</span>
+    <button class="filter-btn active" data-filter="theme" data-value="all">Tous</button>
+    <button class="filter-btn" data-filter="theme" data-value="Défense">Défense</button>
+    <button class="filter-btn" data-filter="theme" data-value="Sécurité VDL">Sécurité VDL</button>
+    <button class="filter-btn" data-filter="theme" data-value="Cybersécurité">Cybersécurité</button>
+    <button class="filter-btn" data-filter="theme" data-value="Technologie">Technologie</button>
+    <button class="filter-btn" data-filter="theme" data-value="Cartographie">Cartographie</button>
+    <div class="controls-sep"></div>
+    <span class="controls-label">Priorité</span>
+    <button class="filter-btn active" data-filter="priorite" data-value="all">Toutes</button>
+    <button class="filter-btn" data-filter="priorite" data-value="Stratégique">Stratégique</button>
+    <button class="filter-btn" data-filter="priorite" data-value="Haute">Haute</button>
+    <button class="filter-btn" data-filter="priorite" data-value="Moyenne">Moyenne</button>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline" id="timeline"></div>
+  <div class="no-results" id="no-results">Aucun événement ne correspond aux filtres sélectionnés.</div>
+
+</main>
+
+<footer>
+  <strong>NOVOSTOK</strong> — Intelligence Économique & Cybersécurité · Paris · Dubaï · Casablanca<br>
+  Document confidentiel – usage interne Direction. Données vérifiées sur sources officielles. Certaines informations restent à confirmer auprès des organisateurs.
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="modal-badges" id="m-badges"></div>
+      <div class="modal-title" id="m-title"></div>
+      <div class="modal-edition" id="m-edition"></div>
+      <div class="modal-meta-row">
+        <div class="modal-meta-item">📅 <strong id="m-dates"></strong></div>
+        <div class="modal-meta-item">📍 <strong id="m-location"></strong></div>
+        <div class="modal-meta-item" id="m-countdown-wrap">⏱ <strong id="m-countdown"></strong></div>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <!-- Section 1 : Description -->
+      <div class="modal-section">
+        <div class="modal-section-title">Identité de l'événement</div>
+        <div class="modal-grid">
+          <div class="modal-field"><div class="modal-field-label">Organisateur</div><div class="modal-field-value" id="m-organisateur"></div></div>
+          <div class="modal-field"><div class="modal-field-label">Patronage / Tutelle</div><div class="modal-field-value" id="m-patronage"></div></div>
+          <div class="modal-field"><div class="modal-field-label">Fréquence</div><div class="modal-field-value" id="m-frequence"></div></div>
+          <div class="modal-field"><div class="modal-field-label">Périmètre</div><div class="modal-field-value" id="m-perimetre"></div></div>
+          <div class="modal-field"><div class="modal-field-label">Lieu précis</div><div class="modal-field-value" id="m-lieu"></div></div>
+          <div class="modal-field"><div class="modal-field-label">Adresse</div><div class="modal-field-value" id="m-adresse"></div></div>
+        </div>
+      </div>
+
+      <!-- Section 2 : Contenu -->
+      <div class="modal-section">
+        <div class="modal-section-title">Contenu & public visé</div>
+        <div class="modal-grid">
+          <div class="modal-field"><div class="modal-field-label">Secteurs couverts</div><div class="modal-field-value" id="m-secteurs"></div></div>
+          <div class="modal-field"><div class="modal-field-label">Thèmes phares</div><div class="modal-field-value" id="m-themes"></div></div>
+          <div class="modal-field" style="grid-column:1/-1"><div class="modal-field-label">Public visé</div><div class="modal-field-value" id="m-public"></div></div>
+        </div>
+      </div>
+
+      <!-- Section 3 : Chiffres -->
+      <div class="modal-section">
+        <div class="modal-section-title">Chiffres clés (source datée)</div>
+        <div class="modal-grid">
+          <div class="modal-field"><div class="modal-field-label">Exposants</div><div class="modal-field-value" id="m-exposants"></div></div>
+          <div class="modal-field"><div class="modal-field-label">Visiteurs</div><div class="modal-field-value" id="m-visiteurs"></div></div>
+          <div class="modal-field"><div class="modal-field-label">Pays représentés</div><div class="modal-field-value" id="m-pays"></div></div>
+          <div class="modal-field"><div class="modal-field-label">Délégations</div><div class="modal-field-value" id="m-delegations"></div></div>
+          <div class="modal-field"><div class="modal-field-label">Surface</div><div class="modal-field-value" id="m-surface"></div></div>
+          <div class="modal-field"><div class="modal-field-label">Source chiffres</div><div class="modal-field-value" id="m-source"></div></div>
+        </div>
+      </div>
+
+      <!-- Section 4 : Accès & Exposition -->
+      <div class="modal-section">
+        <div class="modal-section-title">Conditions d'accès & exposition</div>
+        <div class="modal-grid">
+          <div class="modal-field"><div class="modal-field-label">Conditions d'accès / badge</div><div class="modal-field-value" id="m-acces"></div></div>
+          <div class="modal-field"><div class="modal-field-label">Modalités exposant</div><div class="modal-field-value" id="m-exposer"></div></div>
+          <div class="modal-field" style="grid-column:1/-1"><div class="modal-field-label">Logistique (aéroport / hôtels)</div><div class="modal-field-value" id="m-logistique"></div></div>
+        </div>
+      </div>
+
+      <!-- Section 5 : Recommandation Novostok -->
+      <div class="modal-section">
+        <div class="modal-section-title">Recommandation Novostok</div>
+        <div class="modal-reco-block">
+          <div class="modal-reco-action" id="m-reco-action"></div>
+          <div class="modal-reco-text" id="m-reco-text"></div>
+        </div>
+      </div>
+
+      <!-- Section 6 : À confirmer -->
+      <div class="modal-section">
+        <div class="modal-confirmer">
+          <div class="modal-confirmer-title">⚠ Données à confirmer auprès de l'organisateur</div>
+          <ul id="m-confirmer"></ul>
+        </div>
+      </div>
+
+      <!-- Lien officiel -->
+      <a class="modal-link" id="m-link" href="#" target="_blank" rel="noopener">
+        ↗ Accéder au site officiel & inscription
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ========== DATA ==========
+  var EVENTS = [
+    {
+      id: 1,
+      nom: "SIT Africa Forum",
+      edition: "13e édition",
+      priorite: "Stratégique",
+      tags: ["Cybersécurité", "Technologie", "Afrique francophone"],
+      statut: "confirmé",
+      dateDebut: "2026-06-09",
+      dateFin: "2026-06-12",
+      ville: "Marrakech", pays: "Maroc", zone: "Maroc",
+      lieu: "Hôtel Fairmont Royal Palm Marrakech",
+      adresse: "Route de Barrage, Marrakech 40000, Maroc",
+      organisateur: "XCOM",
+      patronage: "À confirmer",
+      frequence: "Annuelle",
+      perimetre: "Afrique francophone – CISOs & éditeurs cybersécurité",
+      secteurs: ["Cybersécurité", "Cloud", "Intelligence artificielle", "Identité numérique"],
+      themes: ["Cyber-risques", "Protection des données", "Cloud sécurisé", "IA & cybersécurité"],
+      publicVise: "DSI, RSSI, Directeurs IT, éditeurs de solutions de cybersécurité",
+      exposants: "70+ éditeurs",
+      visiteurs: "350+ décideurs africains",
+      paysRep: "Maroc, Sénégal, Côte d'Ivoire, Cameroun et +",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "wearetech.africa, 2026",
+      acces: "Sur invitation / badge professionnel – réservé aux RSSI et DSI",
+      exposer: "Dossier exposant B2B – contacter XCOM via sit.africa",
+      logistique: "Aéroport : Marrakech-Menara (RAK). Hôtels : Fairmont Royal Palm, Sofitel Marrakech.",
+      recommandation: "Exposer un stand",
+      justification: "Événement de référence pour les décideurs cyber d'Afrique francophone, alignement direct avec l'offre Novostok IA & cybersécurité. Visibilité maximale auprès des RSSI cibles.",
+      lien: "https://sit.africa/",
+      aConfirmer: [
+        "Tarif stand exposant 2026",
+        "Nombre exact de pays représentés",
+        "Programme détaillé sessions 2026",
+        "Possibilité de prise de parole en conférence"
+      ]
+    },
+    {
+      id: 2,
+      nom: "Eurosatory 2026",
+      edition: "22e édition",
+      priorite: "Stratégique",
+      tags: ["Défense", "Technologie"],
+      statut: "confirmé",
+      dateDebut: "2026-06-15",
+      dateFin: "2026-06-19",
+      ville: "Paris", pays: "France", zone: "International",
+      lieu: "Paris Nord Villepinte – Halls 5a, 5b, 6",
+      adresse: "ZAC Paris Nord 2, 93420 Villepinte, France",
+      organisateur: "Coges Events",
+      patronage: "Ministère des Armées (France)",
+      frequence: "Biennale",
+      perimetre: "Mondial – défense et sécurité aéroterrestres",
+      secteurs: ["Défense aéroterrestre", "Cybersécurité défense", "Drones & robots", "Espace"],
+      themes: ["Haute intensité aéroterrestre", "Cyber & IA militaire", "Multi-domaines", "Économie de guerre"],
+      publicVise: "Armées, gouvernements, industriels défense, décideurs sécurité",
+      exposants: "2 000+ (attendus)",
+      visiteurs: "100 000+ (éditions précédentes)",
+      paysRep: "60+ pays",
+      delegations: "300+ délégations officielles",
+      surface: "Halls 5a, 5b, 6 – surface non communiquée 2026",
+      sourceChiffres: "defense.gouv.fr, 2026",
+      acces: "Badge professionnel obligatoire – accréditation sur eurosatory.com",
+      exposer: "Dossier exposant sur eurosatory.com – délais serrés, contacter dès maintenant",
+      logistique: "Aéroport : CDG (15 min). RER B station Villepinte. Hôtels : Pullman CDG, Novotel Aéroport CDG.",
+      recommandation: "Visiter",
+      justification: "Plus grand salon mondial de défense aéroterrestre. Indispensable pour la veille technologique, sourcing fournisseurs et réseautage avec délégations ministérielles africaines.",
+      lien: "https://www.eurosatory.com/",
+      aConfirmer: [
+        "Tarif badge professionnel",
+        "Délais d'accréditation",
+        "Programme conférences IA & cyber défense"
+      ]
+    },
+    {
+      id: 3,
+      nom: "Caravan Salon Düsseldorf 2026",
+      edition: "Non communiqué",
+      priorite: "Moyenne",
+      tags: ["Sécurité VDL", "Véhicules de loisirs"],
+      statut: "confirmé",
+      dateDebut: "2026-08-28",
+      dateFin: "2026-09-06",
+      ville: "Düsseldorf", pays: "Allemagne", zone: "International",
+      lieu: "Messe Düsseldorf",
+      adresse: "Stockumer Kirchstraße 61, 40474 Düsseldorf, Allemagne",
+      organisateur: "Messe Düsseldorf GmbH",
+      patronage: "CARAVANING INDUSTRIE VERBAND (CIVD)",
+      frequence: "Annuelle",
+      perimetre: "Mondial – camping-cars, caravanes, vans aménagés",
+      secteurs: ["Véhicules de loisirs", "Accessoires VDL", "Sécurité anti-vol", "Technologies embarquées"],
+      themes: ["Innovations VDL 2026", "Sécurité & traçabilité", "Connectivité embarquée", "Mobilité électrique"],
+      publicVise: "Fabricants VDL, accessoiristes, assureurs, distributeurs, grand public",
+      exposants: "600+ (éditions précédentes)",
+      visiteurs: "250 000+",
+      paysRep: "30+",
+      delegations: "Non communiqué",
+      surface: "220 000 m² (édition 2025)",
+      sourceChiffres: "Messe Düsseldorf, 2025",
+      acces: "Billet grand public ou badge professionnel – caravansalon.de",
+      exposer: "Stand disponible – dossier exposant sur caravansalon.de",
+      logistique: "Aéroport : Düsseldorf International (DUS – 10 min). Hôtels : Sheraton, Marriott Düsseldorf.",
+      recommandation: "Visiter",
+      justification: "Référence mondiale VDL pour identifier les équipementiers ciblant la sécurité des véhicules de loisirs et nouer des partenariats avec les acteurs clés du secteur.",
+      lien: "https://www.caravansalon.de/",
+      aConfirmer: [
+        "Surface et nombre exposants 2026",
+        "Espace dédié sécurité / anti-vol / GPS VDL",
+        "Conditions badge professionnel",
+        "Dates exactes à confirmer sur caravansalon.de"
+      ]
+    },
+    {
+      id: 4,
+      nom: "Africa Technology Show – Morocco",
+      edition: "Non communiqué",
+      priorite: "Haute",
+      tags: ["Technologie", "Cybersécurité", "Maroc"],
+      statut: "à confirmer",
+      dateDebut: "2026-09-09",
+      dateFin: "2026-09-12",
+      ville: "Casablanca", pays: "Maroc", zone: "Maroc",
+      lieu: "Foire Internationale de Casablanca (OFEC)",
+      adresse: "Office des Foires et Expositions de Casablanca, Av. Hassan II, Casablanca",
+      organisateur: "MIE Events",
+      patronage: "À confirmer",
+      frequence: "Annuelle",
+      perimetre: "Maroc / Afrique – B2B technologie, industrie, sécurité",
+      secteurs: ["Technologie industrielle", "Cybersécurité", "Sécurité & gestion des risques", "Digital"],
+      themes: ["Transformation digitale", "Sécurité IT", "Industrie 4.0", "IA"],
+      publicVise: "Industriels, DSI, décideurs tech, fournisseurs B2B marocains et africains",
+      exposants: "Non communiqué",
+      visiteurs: "Non communiqué",
+      paysRep: "Non communiqué",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "eventseye.com, 2026",
+      acces: "Badge professionnel B2B – contacter MIE Events",
+      exposer: "Stand disponible – contacter MIE Events directement",
+      logistique: "Aéroport : Mohammed V (CMN – 35 min). Hôtels : Hyatt Regency Casablanca, Kenzi Tower.",
+      recommandation: "Exposer un stand",
+      justification: "Salon B2B technologie couvrant sécurité et digital à Casablanca, contexte idéal pour positionner Novostok auprès des grands donneurs d'ordre marocains et africains.",
+      lien: "https://www.eventseye.com/fairs/f-africa-technology-show-morocco-30779-1.html",
+      aConfirmer: [
+        "Confirmation dates et lieu par MIE Events",
+        "Tarifs stands exposants",
+        "Nombre de visiteurs professionnels attendus",
+        "Périmètre thématique cybersécurité exact 2026"
+      ]
+    },
+    {
+      id: 5,
+      nom: "GSX 2026 – Global Security Exchange",
+      edition: "Non communiqué",
+      priorite: "Haute",
+      tags: ["Sécurité", "Technologie", "Cybersécurité"],
+      statut: "confirmé",
+      dateDebut: "2026-09-14",
+      dateFin: "2026-09-16",
+      ville: "Atlanta, Georgia", pays: "États-Unis", zone: "International",
+      lieu: "Georgia World Congress Center (GWCC)",
+      adresse: "285 Andrew Young International Blvd NW, Atlanta, GA 30313, USA",
+      organisateur: "ASIS International",
+      patronage: "ASIS International",
+      frequence: "Annuelle",
+      perimetre: "Mondial – professionnels de la sécurité",
+      secteurs: ["Sécurité physique", "Cybersécurité", "Gestion des risques", "Sûreté des personnes"],
+      themes: ["Nouvelles technologies sécurité", "IA & sécurité", "Gestion de crise", "Infrastructure critique"],
+      publicVise: "Responsables sécurité, DSI, Risk managers, forces de l'ordre internationaux",
+      exposants: "200–499",
+      visiteurs: "20 000+",
+      paysRep: "100+",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "gsx.org, 2026",
+      acces: "Badge conférence ou exposition – inscription sur gsx.org",
+      exposer: "Stand disponible – tarifs ~15 000–40 000 USD. Inscription jusqu'au 26 juin pour tarif préférentiel.",
+      logistique: "Aéroport : Hartsfield-Jackson Atlanta (ATL). Hôtels : Marriott Marquis, Hilton Atlanta.",
+      recommandation: "Visiter",
+      justification: "Salon mondial de référence ASIS pour les professionnels de la sécurité. Excellent pour veille technologique, networking international et identification de partenaires distributeurs.",
+      lien: "https://www.gsx.org/",
+      aConfirmer: [
+        "Programme sessions IA & cyber 2026",
+        "Date limite inscription exposants",
+        "Délégations africaines présentes"
+      ]
+    },
+    {
+      id: 6,
+      nom: "Salon VDL 2026 – Véhicules de Loisirs",
+      edition: "60e édition",
+      priorite: "Moyenne",
+      tags: ["Sécurité VDL", "Véhicules de loisirs"],
+      statut: "confirmé",
+      dateDebut: "2026-09-26",
+      dateFin: "2026-10-04",
+      ville: "Le Bourget", pays: "France", zone: "International",
+      lieu: "Parc des Expositions Paris-Le Bourget",
+      adresse: "Carrefour Charles Lindbergh, 93350 Le Bourget, France",
+      organisateur: "UNI VDL",
+      patronage: "Union des Industries du Véhicule de Loisirs",
+      frequence: "Annuelle",
+      perimetre: "France / Europe – véhicules de loisirs",
+      secteurs: ["Camping-cars", "Caravanes", "Vans aménagés", "Accessoires & sécurité VDL"],
+      themes: ["Innovations VDL 2026", "Motorisation électrique", "Sécurité & assurance VDL", "Connectivité embarquée"],
+      publicVise: "Grand public, distributeurs, fabricants, équipementiers VDL",
+      exposants: "150+",
+      visiteurs: "150 000+",
+      paysRep: "Europe principale",
+      delegations: "Non communiqué",
+      surface: "Non communiqué (60e édition)",
+      sourceChiffres: "salonvdl.com, 2026",
+      acces: "Entrée adulte : 15 €. Badge professionnel disponible.",
+      exposer: "Stand exposant – contacter UNI VDL via salonvdl.com",
+      logistique: "Aéroport : CDG (20 min). RER B station Le Bourget + navette. Hôtels : Ibis CDG, Pullman CDG.",
+      recommandation: "Visiter",
+      justification: "Plus grand salon français VDL, 60e édition. Permet d'identifier les acteurs équipementiers et les solutions de sécurité des véhicules de loisirs existants.",
+      lien: "https://salonvdl.com/",
+      aConfirmer: [
+        "Espace dédié sécurité / anti-vol / GPS VDL",
+        "Nombre exact exposants 2026",
+        "Conditions badge professionnel",
+        "650 véhicules exposés – à confirmer pour 2026"
+      ]
+    },
+    {
+      id: 7,
+      nom: "International Security Expo & Cyber Expo",
+      edition: "Non communiqué",
+      priorite: "Haute",
+      tags: ["Sécurité", "Cybersécurité", "Défense"],
+      statut: "confirmé",
+      dateDebut: "2026-09-29",
+      dateFin: "2026-09-30",
+      ville: "Londres", pays: "Royaume-Uni", zone: "International",
+      lieu: "Olympia London – The Grand Hall",
+      adresse: "Hammersmith Rd, Kensington, London W14 8UX, Royaume-Uni",
+      organisateur: "Nineteen Group",
+      patronage: "Home Office UK / Metropolitan Police",
+      frequence: "Annuelle",
+      perimetre: "UK / Europe / International – sécurité & cybersécurité",
+      secteurs: ["Sécurité physique", "Cybersécurité", "Sécurité des infrastructures", "Renseignement"],
+      themes: ["Infrastructure critique", "Cyber-menaces", "Sécurité des frontières", "IA sécurité"],
+      publicVise: "Responsables sécurité gouvernementaux et privés, forces de l'ordre",
+      exposants: "Non communiqué",
+      visiteurs: "10 000+",
+      paysRep: "Non communiqué",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "internationalsecurityexpo.com, 2026",
+      acces: "Badge professionnel gratuit sur inscription – internationalsecurityexpo.com",
+      exposer: "Stand disponible – contacter Nineteen Group",
+      logistique: "Aéroport : Heathrow (LHR – 30 min). Métro : Kensington Olympia. Hôtels : Holiday Inn Kensington, Hilton Olympia.",
+      recommandation: "Visiter",
+      justification: "Seul salon colocalisé sécurité physique ET cybersécurité à Londres sous patronage gouvernemental. Réseautage premium avec décideurs sécurité britanniques et européens.",
+      lien: "https://www.internationalsecurityexpo.com/",
+      aConfirmer: [
+        "Nombre exposants 2026",
+        "Programme conférences cyber & IA",
+        "Conditions accréditation partenaire"
+      ]
+    },
+    {
+      id: 8,
+      nom: "Conférence Esri Francophone – SIG 2026",
+      edition: "29e édition",
+      priorite: "Moyenne",
+      tags: ["Risque & cartographie", "Technologie"],
+      statut: "à confirmer",
+      dateDebut: "2026-10-07",
+      dateFin: "2026-10-09",
+      ville: "Paris", pays: "France", zone: "International",
+      lieu: "Palais des Congrès de Paris",
+      adresse: "2 Pl. de la Porte Maillot, 75017 Paris, France",
+      organisateur: "Esri France",
+      patronage: "Esri Inc.",
+      frequence: "Annuelle",
+      perimetre: "France / Afrique francophone – géomatique, SIG, cartographie",
+      secteurs: ["Cartographie & SIG", "Gestion des risques", "Défense & sécurité", "Environnement"],
+      themes: ["GeoAI & intelligence géospatiale", "Cartographie des risques", "Gestion de crise", "Jumeaux numériques"],
+      publicVise: "Géomaticiens, DSI, Risk managers, forces de l'ordre, collectivités",
+      exposants: "100+",
+      visiteurs: "4 000+",
+      paysRep: "30+ pays francophones",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "esrifrance.fr, 2026",
+      acces: "Inscription sur esrifrance.fr – tarifs selon profil",
+      exposer: "Partenariat ou sponsoring exposant – contacter Esri France",
+      logistique: "Aéroport : CDG ou Orly. Métro : Porte Maillot (ligne 1). Hôtels : Hyatt Régency Paris Étoile, Méridien Étoile.",
+      recommandation: "Visiter",
+      justification: "Référence francophone cartographie et SIG. Pertinent pour l'offre Novostok en cartographie des risques et intelligence territoriale auprès d'une audience africaine francophone.",
+      lien: "https://www.esrifrance.fr/fr-fr/ressources/actualites/cf",
+      aConfirmer: [
+        "Dates exactes 2026 à confirmer sur esrifrance.fr",
+        "Programme sessions risque & défense",
+        "Présence délégations africaines"
+      ]
+    },
+    {
+      id: 9,
+      nom: "Marrakech Air Show 2026",
+      edition: "8e édition",
+      priorite: "Stratégique",
+      tags: ["Défense", "Aérospatiale", "Maroc"],
+      statut: "confirmé",
+      dateDebut: "2026-10-07",
+      dateFin: "2026-10-10",
+      ville: "Marrakech", pays: "Maroc", zone: "Maroc",
+      lieu: "Base Aérienne Royale de Marrakech",
+      adresse: "Aéroport de Marrakech Menara, Route de Casablanca, Marrakech, Maroc",
+      organisateur: "Ministère de la Défense Nationale du Maroc",
+      patronage: "Sous le Haut Patronage de Sa Majesté le Roi Mohammed VI",
+      frequence: "Biennale",
+      perimetre: "International – aérospatiale civile et militaire, défense",
+      secteurs: ["Aviation militaire", "Aviation civile", "Drones & UAV", "Spatial & satellitaire", "Défense"],
+      themes: ["Innovation aérospatiale", "UAV & drones de surveillance", "Spatial & imagerie satellitaire", "Partenariats défense Maroc-Afrique"],
+      publicVise: "Ministères, forces armées, industriels défense, délégations officielles",
+      exposants: "200+ (attendus)",
+      visiteurs: "100 000+ (éditions précédentes)",
+      paysRep: "50+",
+      delegations: "Délégations militaires officielles de haut niveau",
+      surface: "Base aérienne royale – démos statiques et volantes",
+      sourceChiffres: "yabiladi.com / marrakechairshow2026.com, 2026",
+      acces: "Accréditation professionnelle et institutionnelle – marrakechairshow2026.com",
+      exposer: "Pavillon exposant – candidature institutionnelle recommandée. Contacter MDN Maroc.",
+      logistique: "Aéroport : Marrakech Menara (RAK – sur site). Hôtels : La Mamounia, Four Seasons, Sofitel Marrakech.",
+      recommandation: "Délégation + candidature stand",
+      justification: "Sous patronage royal, c'est le salon défense le plus stratégique du Maroc. Visibilité institutionnelle maximale et réseautage avec les plus hautes délégations militaires africaines et internationales.",
+      lien: "https://marrakechairshow2026.com/",
+      aConfirmer: [
+        "Conditions d'accréditation professionnelle non institutionnelle",
+        "Tarif pavillon exposant",
+        "Programme conférences défense Afrique",
+        "Procédure candidature stand hors industrie aérospatiale pure"
+      ]
+    },
+    {
+      id: 10,
+      nom: "Forum Cybersécu – Cloud – IA",
+      edition: "Non communiqué",
+      priorite: "Haute",
+      tags: ["Cybersécurité", "Technologie", "Intelligence artificielle"],
+      statut: "confirmé",
+      dateDebut: "2026-10-14",
+      dateFin: "2026-10-15",
+      ville: "Paris", pays: "France", zone: "International",
+      lieu: "Paris Expo – Porte de Versailles",
+      adresse: "1 Pl. de la Porte de Versailles, 75015 Paris, France",
+      organisateur: "Salon Cloud Security",
+      patronage: "Non communiqué",
+      frequence: "Biannuelle (avril & octobre)",
+      perimetre: "France – cybersécurité, cloud, intelligence artificielle",
+      secteurs: ["Cybersécurité", "Cloud computing", "Intelligence artificielle", "Gestion des risques IT"],
+      themes: ["IA & cybersécurité", "Cloud souverain", "Zero Trust", "Conformité NIS2 / DORA"],
+      publicVise: "RSSI, DSI, architectes sécurité, Risk managers IT",
+      exposants: "100+",
+      visiteurs: "3 000+",
+      paysRep: "France, Belgique, Suisse, Maroc",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "salon-cloud-security.com, 2026",
+      acces: "Accès gratuit sur inscription – salon-cloud-security.com",
+      exposer: "Stand exposant disponible – contacter les organisateurs",
+      logistique: "Aéroport : Orly (ORY – 20 min) ou CDG. Métro : Porte de Versailles (ligne 12). Hôtels : Novotel Paris Vaugirard, Mercure Montparnasse.",
+      recommandation: "Visiter",
+      justification: "Forum français de référence sur la convergence IA–cyber. Alignement direct avec l'offre Novostok et opportunité de networking avec les RSSI cibles des grandes entreprises françaises.",
+      lien: "https://www.salon-cloud-security.com/",
+      aConfirmer: [
+        "Nombre exact exposants et visiteurs octobre 2026",
+        "Programme sessions IA & défense",
+        "Participation délégations Maroc"
+      ]
+    },
+    {
+      id: 11,
+      nom: "Milipol Qatar 2026",
+      edition: "16e édition",
+      priorite: "Haute",
+      tags: ["Sécurité intérieure", "Défense", "Technologie"],
+      statut: "confirmé",
+      dateDebut: "2026-10-20",
+      dateFin: "2026-10-22",
+      ville: "Doha", pays: "Qatar", zone: "International",
+      lieu: "Doha Exhibition and Convention Center (DECC)",
+      adresse: "Al Corniche St, Doha, Qatar",
+      organisateur: "GL Events / Milipol Network",
+      patronage: "Sous le Haut Patronage de Son Altesse l'Émir du Qatar",
+      frequence: "Biennale",
+      perimetre: "Moyen-Orient / Monde – sécurité intérieure des États",
+      secteurs: ["Sécurité intérieure", "Cybersécurité étatique", "Sécurité urbaine", "Infrastructure critique"],
+      themes: ["Lutte antiterroriste", "Cybersécurité étatique", "Surveillance & renseignement", "Protection civile"],
+      publicVise: "Ministères de l'Intérieur, forces de sécurité, douanes, industriels défense",
+      exposants: "400+",
+      visiteurs: "15 000+",
+      paysRep: "60+",
+      delegations: "Délégations ministérielles officielles",
+      surface: "Non communiqué",
+      sourceChiffres: "milipolqatar.com / CCI Seine-et-Marne, 2026",
+      acces: "Accréditation professionnelle – milipolqatar.com",
+      exposer: "Stand ou Pavillon France – contacter Team France Export (Business France)",
+      logistique: "Aéroport : Hamad International (DOH – 20 min). Hôtels : Ritz-Carlton Doha, W Doha, Sheraton Grand.",
+      recommandation: "Visiter",
+      justification: "Rendez-vous stratégique sécurité intérieure au Moyen-Orient. Connexion avec ministères régionaux et délégations africaines qui participent en nombre.",
+      lien: "https://www.milipolqatar.com/",
+      aConfirmer: [
+        "Programme conférences cybersécurité 2026",
+        "Délégations africaines et marocaines attendues",
+        "Tarif Pavillon France",
+        "Conditions visa Qatar"
+      ]
+    },
+    {
+      id: 12,
+      nom: "AFRIDEX 2026 – Africa International Defence Exhibition",
+      edition: "1re édition",
+      priorite: "Stratégique",
+      tags: ["Défense", "Sécurité", "Afrique"],
+      statut: "confirmé",
+      dateDebut: "2026-10-26",
+      dateFin: "2026-10-29",
+      ville: "Lagos", pays: "Nigeria", zone: "Afrique",
+      lieu: "Eko Atlantic, Lagos",
+      adresse: "Eko Atlantic City, Lagos Island, Lagos, Nigeria",
+      organisateur: "AFRIDEX Ltd.",
+      patronage: "À confirmer (gouvernement nigérian)",
+      frequence: "1re édition",
+      perimetre: "Afrique – défense, sécurité, industrie militaire panafricaine",
+      secteurs: ["Défense", "Cybersécurité défense", "Surveillance", "Sécurité des frontières"],
+      themes: ["Industrie de défense africaine", "Souveraineté militaire", "Technologies de surveillance", "Partenariats industriels Afrique"],
+      publicVise: "Ministères de la Défense africains, forces armées, industriels défense",
+      exposants: "Non communiqué",
+      visiteurs: "Non communiqué",
+      paysRep: "54 pays africains (objectif)",
+      delegations: "Délégations militaires officielles africaines",
+      surface: "Non communiqué",
+      sourceChiffres: "afridex.com / defaiya.com, 2026",
+      acces: "Accréditation professionnelle – afridex.com",
+      exposer: "Pavillons exposants disponibles – contacter AFRIDEX Ltd.",
+      logistique: "Aéroport : Murtala Muhammed International (LOS). Hôtels : Eko Hotels & Suites, Radisson Blu Lagos.",
+      recommandation: "Visiter",
+      justification: "Première édition du seul grand salon défense panafricain. Opportunité unique de positionnement early-mover en Afrique subsaharienne et de connexion avec tous les ministères de défense du continent.",
+      lien: "https://www.afridex.com/",
+      aConfirmer: [
+        "Programme complet et liste exposants",
+        "Délégations francophones confirmées",
+        "Tarif stand",
+        "Conditions de visa Nigeria",
+        "Niveau sécurité Eko Atlantic"
+      ]
+    },
+    {
+      id: 13,
+      nom: "Africa Cyber Defense Forum – ACDF 2026",
+      edition: "Non communiqué",
+      priorite: "Haute",
+      tags: ["Cybersécurité", "Défense", "Afrique"],
+      statut: "confirmé",
+      dateDebut: "2026-11-02",
+      dateFin: "2026-11-05",
+      ville: "Kigali", pays: "Rwanda", zone: "Afrique",
+      lieu: "Kigali Marriott Hotel",
+      adresse: "KN 3 Ave, Kigali, Rwanda",
+      organisateur: "ACDF Secretariat",
+      patronage: "À confirmer",
+      frequence: "Annuelle",
+      perimetre: "Afrique – cyberdéfense et cybersécurité nationale",
+      secteurs: ["Cyberdéfense", "Cybersécurité nationale", "Résilience numérique", "Formation cyber"],
+      themes: ["Souveraineté numérique africaine", "Cyberthreats Afrique", "Formation CyberGen", "Partenariats institutionnels cyber"],
+      publicVise: "Agences nationales cybersécurité, ministères, experts cyber africains",
+      exposants: "Non communiqué",
+      visiteurs: "Non communiqué",
+      paysRep: "54 pays africains (objectif)",
+      delegations: "74+ speakers annoncés",
+      surface: "Non communiqué",
+      sourceChiffres: "africacyberdefenseforum.com, 2026",
+      acces: "Inscription en cours – africacyberdefenseforum.com",
+      exposer: "Sponsoring et stands disponibles – contacter ACDF",
+      logistique: "Aéroport : Kigali International (KGL). Hôtels : Kigali Marriott, Radisson Blu Kigali.",
+      recommandation: "Visiter",
+      justification: "Principal forum de cyberdéfense africain, avec une audience d'agences gouvernementales. Excellent pour asseoir la crédibilité institutionnelle de Novostok en Afrique subsaharienne.",
+      lien: "https://africacyberdefenseforum.com/",
+      aConfirmer: [
+        "Dates exactes confirmées",
+        "Programme complet 2026",
+        "Tarif sponsoring / stand",
+        "Délégations francophones attendues"
+      ]
+    },
+    {
+      id: 14,
+      nom: "Préventica Maroc 2026",
+      edition: "Non communiqué",
+      priorite: "Stratégique",
+      tags: ["Sécurité", "Risque & cartographie", "Maroc", "Cybersécurité"],
+      statut: "confirmé",
+      dateDebut: "2026-11-10",
+      dateFin: "2026-11-12",
+      ville: "Casablanca", pays: "Maroc", zone: "Maroc",
+      lieu: "Foire Internationale de Casablanca (OFEC)",
+      adresse: "Office des Foires et Expositions de Casablanca, Av. Hassan II, Casablanca 20000, Maroc",
+      organisateur: "Préventica International",
+      patronage: "Ministère du Travail du Maroc (à confirmer)",
+      frequence: "Biennale (édition Casablanca)",
+      perimetre: "Maroc / Afrique – sécurité au travail, prévention des risques, cybersécurité",
+      secteurs: ["Sécurité au travail", "Cybersécurité industrielle", "Prévention des risques", "Nouvelles technologies sécurité"],
+      themes: ["Culture sécurité entreprise", "Cybersécurité & risques invisibles", "IA au service de la sécurité", "Alignement Vision 2030"],
+      publicVise: "DRH, Responsables HSE, DSI, industriels, décideurs sécurité entreprises marocaines",
+      exposants: "200+ (attendus)",
+      visiteurs: "6 500+",
+      paysRep: "Maroc & Afrique francophone",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "preventica.ma / innovantmagazine.ma, 2026",
+      acces: "Badge visiteur gratuit – inscription sur preventica.ma",
+      exposer: "Stand exposant disponible – dossier sur preventica.ma",
+      logistique: "Aéroport : Mohammed V (CMN – 35 min). Hôtels : Hyatt Regency Casablanca, Kenzi Tower Hotel.",
+      recommandation: "Exposer un stand",
+      justification: "Événement sécurité de référence au Maroc : 200 exposants, 6 500 visiteurs pro, 80+ conférences. Terrain idéal pour Novostok sur cybersécurité, IA et gestion des risques auprès des décideurs marocains.",
+      lien: "https://www.preventica.ma/",
+      aConfirmer: [
+        "Tarif stand exposant",
+        "Confirmation patronage ministériel",
+        "Programme conférences cyber & IA 2026",
+        "Nombre de pays représentés"
+      ]
+    },
+    {
+      id: 15,
+      nom: "EMECEXPO 2026 – Digital, E-Commerce & Cyber",
+      edition: "Non communiqué",
+      priorite: "Moyenne",
+      tags: ["Technologie", "Cybersécurité", "Maroc"],
+      statut: "à confirmer",
+      dateDebut: "2026-12-03",
+      dateFin: "2026-12-05",
+      ville: "Casablanca", pays: "Maroc", zone: "Maroc",
+      lieu: "Foire Internationale de Casablanca (OFEC)",
+      adresse: "Office des Foires et Expositions de Casablanca, Av. Hassan II, Casablanca, Maroc",
+      organisateur: "EMECEXPO",
+      patronage: "À confirmer",
+      frequence: "Annuelle",
+      perimetre: "Maroc – e-commerce, digital, cybersécurité",
+      secteurs: ["E-commerce", "Digital marketing", "Cybersécurité", "Intelligence artificielle"],
+      themes: ["Croissance digitale Maroc", "Sécurité numérique", "E-commerce & marketplace", "IA marketing"],
+      publicVise: "E-commerçants, DSI, responsables digital, startups marocaines",
+      exposants: "Non communiqué",
+      visiteurs: "Non communiqué",
+      paysRep: "Non communiqué",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "emecexpo.com, 2026",
+      acces: "Badge professionnel – emecexpo.com",
+      exposer: "Stand disponible – contacter EMECEXPO",
+      logistique: "Aéroport : Mohammed V (CMN – 35 min). Hôtels : Hyatt Regency, Kenzi Tower.",
+      recommandation: "Visiter",
+      justification: "Salon digital de Casablanca en fin d'année. Pertinent pour surveiller l'écosystème numérique marocain et rencontrer des prospects tech en approche informelle.",
+      lien: "https://www.emecexpo.com/",
+      aConfirmer: [
+        "Dates exactes confirmées par l'organisateur",
+        "Programme cyber / sécurité numérique",
+        "Nombre de visiteurs attendus",
+        "Tarif stand"
+      ]
+    }
+  ];
+
+  // ========== UTILS ==========
+  function parseDate(str) {
+    var parts = str.split('-');
+    return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+  }
+
+  function formatDate(str) {
+    var d = parseDate(str);
+    var months = ['jan.','fév.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+    return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  function formatDateRange(d1, d2) {
+    var a = parseDate(d1), b = parseDate(d2);
+    var months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+    if (a.getMonth() === b.getMonth()) {
+      return a.getDate() + '–' + b.getDate() + ' ' + months[a.getMonth()] + ' ' + a.getFullYear();
+    }
+    return a.getDate() + ' ' + months[a.getMonth()] + ' – ' + b.getDate() + ' ' + months[b.getMonth()] + ' ' + a.getFullYear();
+  }
+
+  function monthLabel(dateStr) {
+    var d = parseDate(dateStr);
+    var months = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+    return months[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  function daysUntil(dateStr) {
+    var today = new Date();
+    today.setHours(0,0,0,0);
+    var target = parseDate(dateStr);
+    target.setHours(0,0,0,0);
+    var diff = Math.round((target - today) / 86400000);
+    return diff;
+  }
+
+  function countdownLabel(dateStr, dateFin) {
+    var d = daysUntil(dateStr);
+    var f = daysUntil(dateFin);
+    if (d > 0) return 'J–' + d;
+    if (f >= 0) return 'En cours';
+    return 'Passé';
+  }
+
+  function priorityClass(p) {
+    if (p === 'Stratégique') return 'priority-strat';
+    if (p === 'Haute') return 'priority-haute';
+    return 'priority-moy';
+  }
+
+  function zoneClass(z) {
+    if (z === 'Maroc') return 'zone-maroc';
+    if (z === 'Afrique') return 'zone-afrique';
+    return 'zone-intl';
+  }
+
+  function recoClass(r) {
+    if (r === 'Exposer un stand') return 'reco-stand';
+    if (r === 'Délégation + candidature stand') return 'reco-delegation';
+    return 'reco-visiter';
+  }
+
+  function statutClass(s) {
+    return s === 'confirmé' ? 'statut-confirme' : 'statut-aconfirmer';
+  }
+
+  function recoActionLabel(r) {
+    if (r === 'Exposer un stand') return '🏢 Exposer un stand';
+    if (r === 'Délégation + candidature stand') return '🎯 Délégation + Stand';
+    return '👁 Visiter';
+  }
+
+  function recoActionColor(r) {
+    if (r === 'Exposer un stand') return 'var(--or-clair)';
+    if (r === 'Délégation + candidature stand') return '#c090f0';
+    return '#80b0e0';
+  }
+
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  // ========== FILTERS ==========
+  var activeFilters = { zone: 'all', theme: 'all', priorite: 'all' };
+
+  function eventMatchesFilters(ev) {
+    if (activeFilters.zone !== 'all' && ev.zone !== activeFilters.zone) return false;
+    if (activeFilters.priorite !== 'all' && ev.priorite !== activeFilters.priorite) return false;
+    if (activeFilters.theme !== 'all') {
+      var themeMap = {
+        'Défense': ['Défense', 'Aérospatiale'],
+        'Sécurité VDL': ['Sécurité VDL', 'Véhicules de loisirs'],
+        'Cybersécurité': ['Cybersécurité', 'Afrique francophone', 'Sécurité intérieure'],
+        'Technologie': ['Technologie', 'Intelligence artificielle'],
+        'Cartographie': ['Risque & cartographie']
+      };
+      var match = false;
+      var targets = themeMap[activeFilters.theme] || [activeFilters.theme];
+      for (var i = 0; i < ev.tags.length; i++) {
+        for (var j = 0; j < targets.length; j++) {
+          if (ev.tags[i].indexOf(targets[j]) >= 0 || targets[j].indexOf(ev.tags[i]) >= 0) {
+            match = true;
+          }
+        }
+      }
+      if (!match) return false;
+    }
+    return true;
+  }
+
+  // ========== RENDER ==========
+  function renderTimeline() {
+    var timeline = document.getElementById('timeline');
+    var noResults = document.getElementById('no-results');
+    timeline.innerHTML = '';
+
+    // Filter and sort
+    var filtered = EVENTS.filter(function(ev) { return eventMatchesFilters(ev); });
+
+    if (filtered.length === 0) {
+      noResults.style.display = 'block';
+      return;
+    }
+    noResults.style.display = 'none';
+
+    // Group by month
+    var byMonth = {};
+    var monthOrder = [];
+    filtered.forEach(function(ev) {
+      var ml = monthLabel(ev.dateDebut);
+      if (!byMonth[ml]) { byMonth[ml] = []; monthOrder.push(ml); }
+      byMonth[ml].push(ev);
+    });
+
+    monthOrder.forEach(function(ml) {
+      var evs = byMonth[ml];
+      var section = document.createElement('div');
+      section.className = 'month-section';
+
+      var header = document.createElement('div');
+      header.className = 'month-header';
+      header.innerHTML = '<div class="month-title">' + escHtml(ml) + '</div>' +
+        '<div class="month-line"></div>' +
+        '<div class="month-count">' + evs.length + ' événement' + (evs.length > 1 ? 's' : '') + '</div>';
+      section.appendChild(header);
+
+      var grid = document.createElement('div');
+      grid.className = 'cards-grid';
+
+      evs.forEach(function(ev) {
+        var cd = countdownLabel(ev.dateDebut, ev.dateFin);
+        var card = document.createElement('div');
+        card.className = 'event-card';
+        card.setAttribute('data-id', ev.id);
+
+        card.innerHTML =
+          '<div class="card-top">' +
+            '<div class="card-badges">' +
+              '<span class="card-priority ' + priorityClass(ev.priorite) + '">' + escHtml(ev.priorite) + '</span>' +
+              '<span class="card-zone ' + zoneClass(ev.zone) + '">' + escHtml(ev.zone) + '</span>' +
+            '</div>' +
+            '<div class="card-countdown"><span>' + escHtml(cd) + '</span></div>' +
+          '</div>' +
+          '<div class="card-name">' + escHtml(ev.nom) + '</div>' +
+          '<div class="card-dates"><strong>' + escHtml(formatDateRange(ev.dateDebut, ev.dateFin)) + '</strong></div>' +
+          '<div class="card-location"><span class="loc-icon">📍</span>' + escHtml(ev.ville) + ', ' + escHtml(ev.pays) + '</div>' +
+          '<div class="card-tags">' + ev.tags.slice(0,3).map(function(t){ return '<span class="tag">' + escHtml(t) + '</span>'; }).join('') + '</div>' +
+          '<div class="card-reco ' + recoClass(ev.recommandation) + '">' + escHtml(ev.recommandation) + '</div>';
+
+        card.addEventListener('click', function() { openModal(ev.id); });
+        grid.appendChild(card);
+      });
+
+      section.appendChild(grid);
+      timeline.appendChild(section);
+    });
+  }
+
+  // ========== MODAL ==========
+  function openModal(id) {
+    var ev = EVENTS.find(function(e) { return e.id === id; });
+    if (!ev) return;
+
+    // Badges
+    document.getElementById('m-badges').innerHTML =
+      '<span class="card-priority ' + priorityClass(ev.priorite) + '">' + escHtml(ev.priorite) + '</span>' +
+      '<span class="card-zone ' + zoneClass(ev.zone) + '">' + escHtml(ev.zone) + '</span>' +
+      '<span class="badge-inline ' + statutClass(ev.statut) + '">' + escHtml(ev.statut) + '</span>';
+
+    document.getElementById('m-title').textContent = ev.nom;
+    document.getElementById('m-edition').textContent = ev.edition;
+    document.getElementById('m-dates').textContent = formatDateRange(ev.dateDebut, ev.dateFin);
+    document.getElementById('m-location').textContent = ev.ville + ', ' + ev.pays;
+
+    var cd = countdownLabel(ev.dateDebut, ev.dateFin);
+    document.getElementById('m-countdown').textContent = cd;
+
+    document.getElementById('m-organisateur').textContent = ev.organisateur;
+    document.getElementById('m-patronage').textContent = ev.patronage;
+    document.getElementById('m-frequence').textContent = ev.frequence;
+    document.getElementById('m-perimetre').textContent = ev.perimetre;
+    document.getElementById('m-lieu').textContent = ev.lieu;
+    document.getElementById('m-adresse').textContent = ev.adresse;
+
+    document.getElementById('m-secteurs').textContent = ev.secteurs.join(' · ');
+    document.getElementById('m-themes').textContent = ev.themes.join(' · ');
+    document.getElementById('m-public').textContent = ev.publicVise;
+
+    document.getElementById('m-exposants').textContent = ev.exposants;
+    document.getElementById('m-visiteurs').textContent = ev.visiteurs;
+    document.getElementById('m-pays').textContent = ev.paysRep;
+    document.getElementById('m-delegations').textContent = ev.delegations;
+    document.getElementById('m-surface').textContent = ev.surface;
+    document.getElementById('m-source').textContent = ev.sourceChiffres;
+
+    document.getElementById('m-acces').textContent = ev.acces;
+    document.getElementById('m-exposer').textContent = ev.exposer;
+    document.getElementById('m-logistique').textContent = ev.logistique;
+
+    var recoEl = document.getElementById('m-reco-action');
+    recoEl.textContent = recoActionLabel(ev.recommandation);
+    recoEl.style.color = recoActionColor(ev.recommandation);
+    document.getElementById('m-reco-text').textContent = ev.justification;
+
+    var ul = document.getElementById('m-confirmer');
+    ul.innerHTML = ev.aConfirmer.map(function(a){ return '<li>' + escHtml(a) + '</li>'; }).join('');
+
+    document.getElementById('m-link').href = ev.lien;
+
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+
+  document.getElementById('modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // ========== KPIs ==========
+  function updateKPIs() {
+    var today = new Date();
+    today.setHours(0,0,0,0);
+
+    var total = EVENTS.length;
+    var maroc = EVENTS.filter(function(e){ return e.zone === 'Maroc'; }).length;
+    var strat = EVENTS.filter(function(e){ return e.priorite === 'Stratégique'; }).length;
+
+    document.getElementById('kpi-total').textContent = total;
+    document.getElementById('kpi-maroc').textContent = maroc;
+    document.getElementById('kpi-strat').textContent = strat;
+
+    // Prochain événement
+    var upcoming = EVENTS.filter(function(e){ return parseDate(e.dateDebut) >= today; });
+    upcoming.sort(function(a,b){ return parseDate(a.dateDebut) - parseDate(b.dateDebut); });
+    if (upcoming.length > 0) {
+      var next = upcoming[0];
+      var d = daysUntil(next.dateDebut);
+      document.getElementById('kpi-prochain').textContent = 'J–' + d;
+      document.getElementById('kpi-prochain-nom').textContent = next.nom;
+    }
+  }
+
+  // ========== FILTER BUTTONS ==========
+  document.querySelectorAll('.filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var filterType = this.getAttribute('data-filter');
+      var value = this.getAttribute('data-value');
+      activeFilters[filterType] = value;
+
+      // Update button states for this filter group
+      document.querySelectorAll('[data-filter="' + filterType + '"]').forEach(function(b) {
+        b.classList.remove('active');
+      });
+      this.classList.add('active');
+
+      renderTimeline();
+    });
+  });
+
+  // ========== TODAY DATE ==========
+  (function() {
+    var today = new Date();
+    var months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+    document.getElementById('today-date').textContent = today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
+  })();
+
+  // ========== INIT ==========
+  updateKPIs();
+  renderTimeline();
+</script>
+</body>
+</html>
