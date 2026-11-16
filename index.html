@@ -282,7 +282,7 @@
 
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
     gap: 16px;
   }
 
@@ -624,6 +624,55 @@
     display: none;
   }
 
+  /* ========== RUBRIQUE DÉFENSE 2027 ========== */
+  .rubrique-defense {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--or-border);
+    scroll-margin-top: 16px;
+  }
+  .rubrique-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    flex-wrap: wrap; gap: 8px 24px;
+    margin-bottom: 24px;
+  }
+  .rubrique-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 600;
+    color: var(--or-clair);
+  }
+  .rubrique-head p { font-size: 12px; color: var(--texte-dim); letter-spacing: 0.5px; }
+  .rubrique-veille {
+    margin-top: 32px;
+    background: var(--bleu-card);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-left: 4px solid var(--or);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+  }
+  .rubrique-veille h3 {
+    font-size: 11px; color: var(--or-clair);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 10px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--or-border);
+  }
+  .rubrique-veille ul { padding-left: 16px; }
+  .rubrique-veille li { font-size: 12.5px; color: var(--texte-dim); margin-bottom: 8px; line-height: 1.5; }
+  .rubrique-veille li strong { color: var(--texte); }
+  .rubrique-note { margin-top: 14px; font-size: 11.5px; color: var(--texte-dim); }
+  .rubrique-link {
+    display: inline-block;
+    padding: 7px 16px;
+    border-radius: 6px;
+    font-size: 12px; font-weight: 500;
+    border: 1px solid var(--or);
+    background: var(--or-pale);
+    color: var(--or-clair);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+  }
+  .rubrique-link:hover { background: rgba(201,168,76,0.22); }
+
   /* ========== FOOTER ========== */
   footer {
     border-top: 1px solid var(--or-border);
@@ -753,11 +802,30 @@
     <button class="filter-btn" data-filter="priorite" data-value="Stratégique">Stratégique</button>
     <button class="filter-btn" data-filter="priorite" data-value="Haute">Haute</button>
     <button class="filter-btn" data-filter="priorite" data-value="Moyenne">Moyenne</button>
+    <div class="controls-sep"></div>
+    <a class="rubrique-link" href="#defense-2027">Rubrique Défense 2027 ↓</a>
   </div>
 
   <!-- TIMELINE -->
   <div class="timeline" id="timeline"></div>
   <div class="no-results" id="no-results">Aucun événement ne correspond aux filtres sélectionnés.</div>
+
+  <!-- RUBRIQUE DÉFENSE 2027 -->
+  <section class="rubrique-defense" id="defense-2027">
+    <div class="rubrique-head">
+      <h2>⬧ Rubrique Défense — salons 2027</h2>
+      <p id="defense-resume"></p>
+    </div>
+    <div class="timeline" id="timeline-defense"></div>
+    <div class="rubrique-veille">
+      <h3>En veille — dates 2027 non publiées</h3>
+      <ul id="defense-veille">
+        <li><strong>AFRIDEX 2027</strong> — Salon international de la défense en Afrique. Édition 2026 à Lagos, Nigeria. Retour annoncé en 2027, dates non publiées.</li>
+        <li><strong>SOFINS 2027</strong> — Salon des forces spéciales, camp de Souge, près de Bordeaux. Biennal : 7<sup>e</sup> édition en avril 2025. Dates 2027 non publiées.</li>
+      </ul>
+    </div>
+    <p class="rubrique-note">Pas d'édition en 2027 pour Eurosatory, World Defense Show et Marrakech Air Show : ces salons ont lieu les années paires. Dates vérifiées en novembre 2026.</p>
+  </section>
 
 </main>
 
@@ -1424,6 +1492,290 @@
     }
   ];
 
+  // ========== RUBRIQUE DÉFENSE 2027 ==========
+  var DEFENSE_2027 = [
+    {
+      id: 101,
+      nom: "IDEX & NAVDEX 2027",
+      edition: "Édition 2027",
+      priorite: "Stratégique",
+      tags: ["Défense", "Technologie", "Golfe"],
+      statut: "confirmé",
+      dateDebut: "2027-01-25",
+      dateFin: "2027-01-29",
+      ville: "Abu Dhabi",
+      pays: "Émirats arabes unis",
+      zone: "International",
+      lieu: "ADNEC Centre Abu Dhabi",
+      adresse: "ADNEC Centre, Abu Dhabi, Émirats arabes unis",
+      organisateur: "ADNEC Group, avec le ministère de la Défense des Émirats arabes unis",
+      patronage: "À confirmer pour 2027",
+      frequence: "Biennale",
+      perimetre: "Moyen-Orient, Afrique, international – défense terrestre, aérienne et navale",
+      secteurs: ["Défense terrestre", "Défense navale (NAVDEX)", "Systèmes autonomes", "IA de défense"],
+      themes: ["Systèmes autonomes", "IA de défense", "Industrie de défense du Golfe", "Délégations Afrique et Moyen-Orient"],
+      publicVise: "Forces armées, ministères de la Défense, industriels, délégations officielles",
+      exposants: "1 500+ (édition 2025)",
+      visiteurs: "206 000 (édition 2025)",
+      paysRep: "Non communiqué",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "idexuae.ae, 2025",
+      acces: "Badge professionnel – inscription sur idexuae.ae",
+      exposer: "Dossier exposant sur idexuae.ae",
+      logistique: "Aéroport : Abu Dhabi Zayed International (AUH). Dubaï (DXB) à environ 1 h 30. Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Premier salon défense de la région MENA, à proximité directe du bureau Novostok de Dubaï. Forte présence de délégations africaines et moyen-orientales : meilleur rapport rencontres-déplacement du premier semestre 2027.",
+      lien: "https://www.idexuae.ae/en",
+      aConfirmer: ["Patronage officiel 2027", "Programme de la Conférence internationale de défense", "Tarif badge et délais d'accréditation", "Délégations africaines francophones attendues"]
+    },
+    {
+      id: 102,
+      nom: "IDEF 2027 – Salon international de l'industrie de défense",
+      edition: "18e édition",
+      priorite: "Haute",
+      tags: ["Défense", "Technologie", "International"],
+      statut: "confirmé",
+      dateDebut: "2027-05-03",
+      dateFin: "2027-05-09",
+      ville: "Istanbul",
+      pays: "Turquie",
+      zone: "International",
+      lieu: "İstanbul Fuar Merkezi (centre des expositions d'Istanbul)",
+      adresse: "İstanbul Fuar Merkezi, Istanbul, Turquie",
+      organisateur: "IDEF – organisateur officiel (idef.com.tr)",
+      patronage: "À confirmer",
+      frequence: "Biennale",
+      perimetre: "International – industrie de défense, forte présence turque",
+      secteurs: ["Défense terrestre", "Drones & UAV", "Naval", "Électronique de défense"],
+      themes: ["Industrie de défense turque", "Drones", "Coopérations industrielles", "Exportations vers l'Afrique"],
+      publicVise: "Industriels défense, forces armées, délégations officielles",
+      exposants: "1 491 entreprises (édition 2025)",
+      visiteurs: "Non communiqué",
+      paysRep: "49 pays (édition 2025)",
+      delegations: "967 membres de délégations (édition 2025)",
+      surface: "Non communiqué",
+      sourceChiffres: "idef.com.tr, 2025",
+      acces: "Badge professionnel – inscription sur idef.com.tr",
+      exposer: "Dossier exposant sur idef.com.tr",
+      logistique: "Aéroport : Istanbul (IST). Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Vitrine de l'industrie de défense turque, fournisseur très actif sur le continent africain. Utile pour la veille concurrentielle et la cartographie des partenariats Turquie–Afrique.",
+      lien: "https://idef.com.tr/",
+      aConfirmer: ["Jours ouverts aux visiteurs professionnels sur les 7 jours annoncés", "Tarif badge", "Programme conférences"]
+    },
+    {
+      id: 103,
+      nom: "DEFEA 2027 – Defence Exhibition Athens",
+      edition: "Édition 2027",
+      priorite: "Moyenne",
+      tags: ["Défense", "Technologie", "International"],
+      statut: "à confirmer",
+      dateDebut: "2027-05-18",
+      dateFin: "2027-05-20",
+      ville: "Athènes",
+      pays: "Grèce",
+      zone: "International",
+      lieu: "Metropolitan Expo",
+      adresse: "Metropolitan Expo, à côté de l'aéroport international d'Athènes, Grèce",
+      organisateur: "DEFEA",
+      patronage: "À confirmer",
+      frequence: "Biennale",
+      perimetre: "Méditerranée orientale – défense et sécurité",
+      secteurs: ["Défense", "Sécurité", "Naval", "Industrie européenne"],
+      themes: ["Sécurité en Méditerranée", "Industrie de défense européenne", "Coopérations régionales"],
+      publicVise: "Industriels défense, forces armées, délégations officielles",
+      exposants: "400+ de 35+ pays confirmés (juillet 2026)",
+      visiteurs: "Non communiqué",
+      paysRep: "35+ (exposants confirmés)",
+      delegations: "Non communiqué",
+      surface: "80 % réservée dès juillet 2026",
+      sourceChiffres: "euro-sd.com, juillet 2026",
+      acces: "Badge professionnel – à confirmer auprès de l'organisateur",
+      exposer: "Plus de 80 % de la surface déjà réservée : décision rapide si stand",
+      logistique: "Aéroport : Athènes (ATH), le salon est attenant. Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Salon de référence en Méditerranée orientale. Intérêt secondaire pour l'Afrique francophone : à retenir pour la veille sur l'industrie de défense européenne.",
+      lien: "https://www.defea.gr/",
+      aConfirmer: ["Dates confirmées sur le site de l'organisateur", "Conditions d'accès visiteurs", "Programme conférences"]
+    },
+    {
+      id: 104,
+      nom: "Salon du Bourget 2027 – Paris Air Show",
+      edition: "56e édition",
+      priorite: "Haute",
+      tags: ["Défense", "Aérospatiale", "Technologie"],
+      statut: "confirmé",
+      dateDebut: "2027-06-14",
+      dateFin: "2027-06-20",
+      ville: "Le Bourget",
+      pays: "France",
+      zone: "International",
+      lieu: "Parc des expositions Paris-Le Bourget",
+      adresse: "Parc des expositions, 93350 Le Bourget, France",
+      organisateur: "SIAE – Salon international de l'aéronautique et de l'espace",
+      patronage: "À confirmer",
+      frequence: "Biennale (années impaires)",
+      perimetre: "Mondial – aéronautique, spatial, défense",
+      secteurs: ["Aéronautique", "Spatial", "Défense aérienne", "Drones"],
+      themes: ["Aviation militaire", "Spatial et satellites", "Souveraineté industrielle"],
+      publicVise: "Industriels, forces armées, délégations officielles, grand public en fin de salon",
+      exposants: "Non communiqué",
+      visiteurs: "Non communiqué",
+      paysRep: "Non communiqué",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "siae.fr, 2026",
+      acces: "Badge professionnel – siae.fr",
+      exposer: "Dossier exposant sur siae.fr",
+      logistique: "Aéroports : Paris-CDG et Paris-Orly. Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Premier rendez-vous aéronautique et spatial mondial, avec un volet défense majeur. Proche du bureau Novostok de Paris : coût de déplacement faible pour une forte densité de délégations africaines.",
+      lien: "https://www.siae.fr/",
+      aConfirmer: ["Jours réservés aux professionnels", "Chiffres de l'édition 2025", "Tarif badge"]
+    },
+    {
+      id: 105,
+      nom: "MSPO 2027 – Salon international de l'industrie de défense",
+      edition: "Édition 2027",
+      priorite: "Moyenne",
+      tags: ["Défense", "International"],
+      statut: "confirmé",
+      dateDebut: "2027-08-31",
+      dateFin: "2027-09-03",
+      ville: "Kielce",
+      pays: "Pologne",
+      zone: "International",
+      lieu: "Targi Kielce",
+      adresse: "Targi Kielce, Kielce, Pologne",
+      organisateur: "Targi Kielce",
+      patronage: "À confirmer",
+      frequence: "Annuelle",
+      perimetre: "Europe centrale – industrie de défense",
+      secteurs: ["Défense terrestre", "Industrie européenne", "Logistique militaire"],
+      themes: ["Réarmement européen", "Industrie de défense polonaise"],
+      publicVise: "Industriels défense, forces armées européennes",
+      exposants: "Non communiqué",
+      visiteurs: "Non communiqué",
+      paysRep: "Non communiqué",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "targikielce.pl, 2026",
+      acces: "Badge professionnel – targikielce.pl",
+      exposer: "Dossier exposant auprès de Targi Kielce",
+      logistique: "Aéroports les plus proches : Cracovie (KRK) ou Varsovie (WAW), puis route. Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Un des principaux salons défense d'Europe centrale. Pertinence limitée pour l'Afrique : à retenir uniquement pour la veille industrielle européenne.",
+      lien: "https://www.targikielce.pl/en/mspo/visit/",
+      aConfirmer: ["Chiffres de l'édition 2026", "Programme 2027"]
+    },
+    {
+      id: 106,
+      nom: "DSEI UK 2027",
+      edition: "Édition 2027",
+      priorite: "Haute",
+      tags: ["Défense", "Sécurité", "Cybersécurité"],
+      statut: "confirmé",
+      dateDebut: "2027-09-07",
+      dateFin: "2027-09-10",
+      ville: "Londres",
+      pays: "Royaume-Uni",
+      zone: "International",
+      lieu: "ExCeL London",
+      adresse: "ExCeL London, Royal Victoria Dock, Londres, Royaume-Uni",
+      organisateur: "Clarion Defence & Security",
+      patronage: "À confirmer",
+      frequence: "Biennale (années impaires)",
+      perimetre: "Mondial – défense et sécurité tous milieux",
+      secteurs: ["Aérospatial", "Terrestre", "Naval", "Spatial", "Cyber"],
+      themes: ["Cyber et autonomie", "Multi-domaines", "Industrie de défense britannique"],
+      publicVise: "Forces armées, ministères, industriels, délégations officielles",
+      exposants: "~1 600 (édition précédente)",
+      visiteurs: "~45 000 (édition précédente)",
+      paysRep: "Non communiqué",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "dsei.co.uk, 2026",
+      acces: "Badge professionnel – dsei.co.uk",
+      exposer: "Dossier exposant sur dsei.co.uk",
+      logistique: "Aéroports : London City (LCY, proche d'ExCeL) et Heathrow (LHR). Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Grand salon mondial défense et sécurité, avec une part croissante consacrée au cyber et à l'autonomie : aligné avec le positionnement IA et cybersécurité de Novostok.",
+      lien: "https://www.dsei.co.uk/",
+      aConfirmer: ["Chiffres de l'édition 2025", "Tarif badge", "Programme cyber 2027"]
+    },
+    {
+      id: 107,
+      nom: "Dubai Airshow 2027",
+      edition: "Édition 2027",
+      priorite: "Haute",
+      tags: ["Défense", "Aérospatiale", "Golfe"],
+      statut: "confirmé",
+      dateDebut: "2027-11-15",
+      dateFin: "2027-11-19",
+      ville: "Dubaï",
+      pays: "Émirats arabes unis",
+      zone: "International",
+      lieu: "Dubai World Central (DWC), site du Dubai Airshow",
+      adresse: "Dubai World Central, Dubaï, Émirats arabes unis",
+      organisateur: "Dubai Airshow – organisateur officiel (dubaiairshow.aero)",
+      patronage: "À confirmer",
+      frequence: "Biennale (années impaires)",
+      perimetre: "Mondial – aéronautique civile et militaire, spatial",
+      secteurs: ["Aviation militaire", "Aviation civile", "Spatial", "Drones"],
+      themes: ["Aviation militaire", "Commandes aéronautiques", "Startups aérospatiales"],
+      publicVise: "Industriels, forces armées, compagnies aériennes, délégations officielles",
+      exposants: "1 500",
+      visiteurs: "248 000+ de 115 pays",
+      paysRep: "115",
+      delegations: "490+ délégations officielles",
+      surface: "Non communiqué",
+      sourceChiffres: "dubaiairshow.aero, 2026",
+      acces: "Badge professionnel – dubaiairshow.aero",
+      exposer: "Dossier exposant sur dubaiairshow.aero",
+      logistique: "Aéroport : Al Maktoum International (DWC), sur site. Dubaï International (DXB) à environ 45 min. Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Dans la ville du bureau Novostok de Dubaï. Volet défense et aviation militaire important, très forte densité de délégations officielles.",
+      lien: "https://www.dubaiairshow.aero/",
+      aConfirmer: ["Édition de référence des chiffres affichés", "Tarif badge", "Programme défense"]
+    },
+    {
+      id: 108,
+      nom: "EDEX 2027 – Egypt Defence Expo",
+      edition: "Édition 2027",
+      priorite: "Haute",
+      tags: ["Défense", "Sécurité", "Afrique"],
+      statut: "à confirmer",
+      dateDebut: "2027-12-06",
+      dateFin: "2027-12-09",
+      ville: "Le Caire",
+      pays: "Égypte",
+      zone: "Afrique",
+      lieu: "Egypt International Exhibition Centre (EIEC)",
+      adresse: "EIEC, Nouveau Caire, Le Caire, Égypte",
+      organisateur: "Autorité de l'armement, ministère égyptien de la Défense",
+      patronage: "À confirmer",
+      frequence: "Biennale",
+      perimetre: "Afrique et Moyen-Orient – défense et sécurité",
+      secteurs: ["Défense terrestre", "Naval", "Aérien", "Sécurité"],
+      themes: ["Industrie de défense égyptienne", "Coopérations Afrique–Moyen-Orient"],
+      publicVise: "Forces armées, ministères de la Défense, industriels, délégations officielles",
+      exposants: "Non communiqué",
+      visiteurs: "Non communiqué",
+      paysRep: "Non communiqué",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "theflyingengineer.com (annuaire), 2026",
+      acces: "Accréditation professionnelle – egyptdefenceexpo.com",
+      exposer: "Dossier exposant sur egyptdefenceexpo.com",
+      logistique: "Aéroport : Le Caire (CAI). Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Un des principaux salons défense d'Afrique du Nord, avec de nombreuses délégations africaines. Complète AFRIDEX pour la couverture défense du continent.",
+      lien: "https://www.egyptdefenceexpo.com/",
+      aConfirmer: ["Dates confirmées sur le site de l'organisateur", "Chiffres de l'édition 2025", "Conditions d'accréditation", "Visa Égypte"]
+    }
+  ];
+
   // ========== UTILS ==========
   function parseDate(str) {
     var parts = str.split('-');
@@ -1535,24 +1887,34 @@
   }
 
   // ========== RENDER ==========
-  function renderTimeline() {
-    var timeline = document.getElementById('timeline');
-    var noResults = document.getElementById('no-results');
-    timeline.innerHTML = '';
+  function buildCard(ev) {
+    var cd = countdownLabel(ev.dateDebut, ev.dateFin);
+    var card = document.createElement('div');
+    card.className = 'event-card';
+    card.setAttribute('data-id', ev.id);
 
-    // Filter and sort
-    var filtered = EVENTS.filter(function(ev) { return eventMatchesFilters(ev); });
+    card.innerHTML =
+      '<div class="card-top">' +
+        '<div class="card-badges">' +
+          '<span class="card-priority ' + priorityClass(ev.priorite) + '">' + escHtml(ev.priorite) + '</span>' +
+          '<span class="card-zone ' + zoneClass(ev.zone) + '">' + escHtml(ev.zone) + '</span>' +
+        '</div>' +
+        '<div class="card-countdown"><span>' + escHtml(cd) + '</span></div>' +
+      '</div>' +
+      '<div class="card-name">' + escHtml(ev.nom) + '</div>' +
+      '<div class="card-dates"><strong>' + escHtml(formatDateRange(ev.dateDebut, ev.dateFin)) + '</strong></div>' +
+      '<div class="card-location"><span class="loc-icon">📍</span>' + escHtml(ev.ville) + ', ' + escHtml(ev.pays) + '</div>' +
+      '<div class="card-tags">' + ev.tags.slice(0,3).map(function(t){ return '<span class="tag">' + escHtml(t) + '</span>'; }).join('') + '</div>' +
+      '<div class="card-reco ' + recoClass(ev.recommandation) + '">' + escHtml(ev.recommandation) + '</div>';
 
-    if (filtered.length === 0) {
-      noResults.style.display = 'block';
-      return;
-    }
-    noResults.style.display = 'none';
+    card.addEventListener('click', function() { openModal(ev.id); });
+    return card;
+  }
 
-    // Group by month
+  function renderGroups(container, list) {
     var byMonth = {};
     var monthOrder = [];
-    filtered.forEach(function(ev) {
+    list.forEach(function(ev) {
       var ml = monthLabel(ev.dateDebut);
       if (!byMonth[ml]) { byMonth[ml] = []; monthOrder.push(ml); }
       byMonth[ml].push(ev);
@@ -1572,39 +1934,43 @@
 
       var grid = document.createElement('div');
       grid.className = 'cards-grid';
-
-      evs.forEach(function(ev) {
-        var cd = countdownLabel(ev.dateDebut, ev.dateFin);
-        var card = document.createElement('div');
-        card.className = 'event-card';
-        card.setAttribute('data-id', ev.id);
-
-        card.innerHTML =
-          '<div class="card-top">' +
-            '<div class="card-badges">' +
-              '<span class="card-priority ' + priorityClass(ev.priorite) + '">' + escHtml(ev.priorite) + '</span>' +
-              '<span class="card-zone ' + zoneClass(ev.zone) + '">' + escHtml(ev.zone) + '</span>' +
-            '</div>' +
-            '<div class="card-countdown"><span>' + escHtml(cd) + '</span></div>' +
-          '</div>' +
-          '<div class="card-name">' + escHtml(ev.nom) + '</div>' +
-          '<div class="card-dates"><strong>' + escHtml(formatDateRange(ev.dateDebut, ev.dateFin)) + '</strong></div>' +
-          '<div class="card-location"><span class="loc-icon">📍</span>' + escHtml(ev.ville) + ', ' + escHtml(ev.pays) + '</div>' +
-          '<div class="card-tags">' + ev.tags.slice(0,3).map(function(t){ return '<span class="tag">' + escHtml(t) + '</span>'; }).join('') + '</div>' +
-          '<div class="card-reco ' + recoClass(ev.recommandation) + '">' + escHtml(ev.recommandation) + '</div>';
-
-        card.addEventListener('click', function() { openModal(ev.id); });
-        grid.appendChild(card);
-      });
+      evs.forEach(function(ev) { grid.appendChild(buildCard(ev)); });
 
       section.appendChild(grid);
-      timeline.appendChild(section);
+      container.appendChild(section);
     });
+  }
+
+  function renderTimeline() {
+    var timeline = document.getElementById('timeline');
+    var noResults = document.getElementById('no-results');
+    timeline.innerHTML = '';
+
+    var filtered = EVENTS.filter(function(ev) { return eventMatchesFilters(ev); });
+
+    if (filtered.length === 0) {
+      noResults.style.display = 'block';
+      return;
+    }
+    noResults.style.display = 'none';
+    renderGroups(timeline, filtered);
+  }
+
+  function renderDefense() {
+    var list = DEFENSE_2027.slice().sort(function(a,b){ return parseDate(a.dateDebut) - parseDate(b.dateDebut); });
+    var container = document.getElementById('timeline-defense');
+    container.innerHTML = '';
+    renderGroups(container, list);
+
+    var confirmes = list.filter(function(e){ return e.statut === 'confirmé'; }).length;
+    var veille = document.querySelectorAll('#defense-veille li').length;
+    document.getElementById('defense-resume').textContent =
+      list.length + ' salons datés · ' + confirmes + ' dates confirmées · ' + veille + ' en veille';
   }
 
   // ========== MODAL ==========
   function openModal(id) {
-    var ev = EVENTS.find(function(e) { return e.id === id; });
+    var ev = EVENTS.concat(DEFENSE_2027).find(function(e) { return e.id === id; });
     if (!ev) return;
 
     // Badges
@@ -1723,6 +2089,7 @@
   // ========== INIT ==========
   updateKPIs();
   renderTimeline();
+  renderDefense();
 </script>
 </body>
 </html>
