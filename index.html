@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Novostok – Cartographie Événementielle Direction 2026</title>
+<title>Novostok – Cartographie Événementielle Direction 2026 – 2027</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -625,25 +625,8 @@
   }
 
   /* ========== RUBRIQUE DÉFENSE 2027 ========== */
-  .rubrique-defense {
-    margin-top: 56px;
-    padding-top: 32px;
-    border-top: 1px solid var(--or-border);
-    scroll-margin-top: 16px;
-  }
-  .rubrique-head {
-    display: flex; align-items: baseline; justify-content: space-between;
-    flex-wrap: wrap; gap: 8px 24px;
-    margin-bottom: 24px;
-  }
-  .rubrique-head h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px; font-weight: 600;
-    color: var(--or-clair);
-  }
-  .rubrique-head p { font-size: 12px; color: var(--texte-dim); letter-spacing: 0.5px; }
   .rubrique-veille {
-    margin-top: 32px;
+    margin-top: 40px;
     background: var(--bleu-card);
     border: 1px solid rgba(255,255,255,0.07);
     border-left: 4px solid var(--or);
@@ -659,6 +642,7 @@
   .rubrique-veille ul { padding-left: 16px; }
   .rubrique-veille li { font-size: 12.5px; color: var(--texte-dim); margin-bottom: 8px; line-height: 1.5; }
   .rubrique-veille li strong { color: var(--texte); }
+  .rubrique-veille li em { font-style: normal; font-size: 10.5px; text-transform: uppercase; letter-spacing: 1px; color: var(--or); margin-left: 4px; }
   .rubrique-note { margin-top: 14px; font-size: 11.5px; color: var(--texte-dim); }
   .rubrique-link {
     display: inline-block;
@@ -670,6 +654,8 @@
     color: var(--or-clair);
     text-decoration: none;
     letter-spacing: 0.3px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
   }
   .rubrique-link:hover { background: rgba(201,168,76,0.22); }
 
@@ -714,7 +700,7 @@
       </div>
     </div>
     <div class="header-meta">
-      <div>Cartographie Événementielle Direction</div>
+      <div>Cartographie Événementielle Direction 2026 – 2027</div>
       <div>Défense · Sécurité · Technologie · Afrique</div>
       <div>Document au <strong id="today-date"></strong></div>
     </div>
@@ -783,6 +769,11 @@
 
   <!-- FILTRES -->
   <div class="controls">
+    <span class="controls-label">Année</span>
+    <button class="filter-btn active" data-filter="annee" data-value="all">Toutes</button>
+    <button class="filter-btn" data-filter="annee" data-value="2026">2026</button>
+    <button class="filter-btn" data-filter="annee" data-value="2027">2027</button>
+    <div class="controls-sep"></div>
     <span class="controls-label">Zone</span>
     <button class="filter-btn active" data-filter="zone" data-value="all">Toutes</button>
     <button class="filter-btn" data-filter="zone" data-value="Maroc">Maroc</button>
@@ -803,29 +794,31 @@
     <button class="filter-btn" data-filter="priorite" data-value="Haute">Haute</button>
     <button class="filter-btn" data-filter="priorite" data-value="Moyenne">Moyenne</button>
     <div class="controls-sep"></div>
-    <a class="rubrique-link" href="#defense-2027">Rubrique Défense 2027 ↓</a>
+    <button class="rubrique-link" id="raccourci-defense-2027" type="button">Défense 2027</button>
   </div>
 
   <!-- TIMELINE -->
   <div class="timeline" id="timeline"></div>
   <div class="no-results" id="no-results">Aucun événement ne correspond aux filtres sélectionnés.</div>
 
-  <!-- RUBRIQUE DÉFENSE 2027 -->
-  <section class="rubrique-defense" id="defense-2027">
-    <div class="rubrique-head">
-      <h2>⬧ Rubrique Défense — salons 2027</h2>
-      <p id="defense-resume"></p>
-    </div>
-    <div class="timeline" id="timeline-defense"></div>
-    <div class="rubrique-veille">
-      <h3>En veille — dates 2027 non publiées</h3>
-      <ul id="defense-veille">
-        <li><strong>AFRIDEX 2027</strong> — Salon international de la défense en Afrique. Édition 2026 à Lagos, Nigeria. Retour annoncé en 2027, dates non publiées.</li>
-        <li><strong>SOFINS 2027</strong> — Salon des forces spéciales, camp de Souge, près de Bordeaux. Biennal : 7<sup>e</sup> édition en avril 2025. Dates 2027 non publiées.</li>
-      </ul>
-    </div>
-    <p class="rubrique-note">Pas d'édition en 2027 pour Eurosatory, World Defense Show et Marrakech Air Show : ces salons ont lieu les années paires. Dates vérifiées en novembre 2026.</p>
+  <!-- VEILLE 2027 -->
+  <section class="rubrique-veille" id="veille-2027">
+    <h3>En veille — dates 2027 non publiées</h3>
+    <ul>
+      <li><strong>Africa Technology Show – Morocco 2027</strong> — Casablanca. Novembre 2027 annoncé sans confirmation. <em>Technologie</em></li>
+      <li><strong>Préventica Maroc</strong> — Casablanca. Prochaine édition après novembre 2026 non annoncée. <em>Sécurité</em></li>
+      <li><strong>EMECEXPO 2027</strong> — Casablanca. Salon annuel, dates 2027 non publiées. <em>Technologie</em></li>
+      <li><strong>International Security Expo 2027</strong> — Londres, Olympia. Salon annuel de fin septembre, dates 2027 non publiées. <em>Sécurité</em></li>
+      <li><strong>SIG 2027 – Conférence Esri francophone</strong> — Paris. Rendez-vous annuel d'octobre, dates 2027 non publiées. <em>Cartographie</em></li>
+      <li><strong>Salon des Véhicules de Loisirs 2027</strong> — Le Bourget. Septembre 2027 annoncé, dates exactes non publiées. <em>Sécurité VDL</em></li>
+      <li><strong>Africa Cyber Defense Forum 2027</strong> — Kigali. Prochaine édition non annoncée. <em>Cybersécurité</em></li>
+      <li><strong>Forum Cybersécu – Cloud – IA 2027</strong> — Paris. Dates 2027 non publiées. <em>Cybersécurité</em></li>
+      <li><strong>Cyber Africa Forum 2027</strong> — Ville hôte et dates à annoncer. <em>Cybersécurité</em></li>
+      <li><strong>AFRIDEX 2027</strong> — Édition 2026 à Lagos. Retour annoncé en 2027, dates non publiées. <em>Défense</em></li>
+      <li><strong>SOFINS 2027</strong> — Salon des forces spéciales, camp de Souge, près de Bordeaux. Biennal, dates 2027 non publiées. <em>Défense</em></li>
+    </ul>
   </section>
+  <p class="rubrique-note">Pas d'édition en 2027 pour Eurosatory, Marrakech Air Show et Milipol Qatar : ces salons ont lieu les années paires. Dates 2027 vérifiées en novembre 2026.</p>
 
 </main>
 
@@ -1492,7 +1485,7 @@
     }
   ];
 
-  // ========== RUBRIQUE DÉFENSE 2027 ==========
+  // ========== DÉFENSE 2027 ==========
   var DEFENSE_2027 = [
     {
       id: 101,
@@ -1776,6 +1769,293 @@
     }
   ];
 
+  // ========== AUTRES SALONS 2027 ==========
+  var AUTRES_2027 = [
+    {
+      id: 109,
+      nom: "Intersec 2027",
+      edition: "Édition 2027",
+      priorite: "Haute",
+      tags: ["Sécurité", "Technologie", "Cybersécurité"],
+      statut: "confirmé",
+      dateDebut: "2027-01-12",
+      dateFin: "2027-01-14",
+      ville: "Dubaï",
+      pays: "Émirats arabes unis",
+      zone: "International",
+      lieu: "Dubai World Trade Centre",
+      adresse: "Dubai World Trade Centre, Dubaï, Émirats arabes unis",
+      organisateur: "Messe Frankfurt Middle East",
+      patronage: "À confirmer",
+      frequence: "Annuelle",
+      perimetre: "Mondial – sûreté, sécurité électronique, protection incendie",
+      secteurs: ["Vidéosurveillance", "Contrôle d'accès", "Sécurité incendie", "Cybersécurité"],
+      themes: ["Sécurité électronique", "Sûreté des sites", "Cybersécurité"],
+      publicVise: "Intégrateurs, installateurs, directeurs sûreté, acheteurs publics et privés",
+      exposants: "~1 400 (édition précédente)",
+      visiteurs: "~50 000 (édition précédente)",
+      paysRep: "Non communiqué",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "intersecglobal.ae.messefrankfurt.com, 2026",
+      acces: "Badge professionnel – inscription sur le site de l'organisateur",
+      exposer: "Dossier exposant auprès de Messe Frankfurt Middle East",
+      logistique: "Aéroport : Dubaï International (DXB). Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Référence mondiale de la sécurité électronique, à Dubaï, ville du bureau Novostok. Le salon le plus proche du métier vidéosurveillance, contrôle d'accès et intégration.",
+      lien: "https://intersecglobal.ae.messefrankfurt.com/dubai/en.html",
+      aConfirmer: ["Chiffres de l'édition 2026", "Programme cybersécurité 2027", "Tarif badge"]
+    },
+    {
+      id: 110,
+      nom: "Forum InCyber Europe 2027",
+      edition: "19e édition",
+      priorite: "Haute",
+      tags: ["Cybersécurité", "Intelligence artificielle", "Technologie"],
+      statut: "confirmé",
+      dateDebut: "2027-03-09",
+      dateFin: "2027-03-11",
+      ville: "Lille",
+      pays: "France",
+      zone: "International",
+      lieu: "Lille Grand Palais",
+      adresse: "Lille Grand Palais, Lille, France",
+      organisateur: "Forum InCyber",
+      patronage: "Haut patronage de la présidence de la République (édition précédente)",
+      frequence: "Annuelle",
+      perimetre: "Europe – cybersécurité et confiance numérique",
+      secteurs: ["Cybersécurité", "Intelligence artificielle", "Cloud", "Identité numérique"],
+      themes: ["IA agentique", "Gouvernance des systèmes autonomes", "Souveraineté numérique"],
+      publicVise: "RSSI, DSI, décideurs publics, éditeurs, forces de sécurité",
+      exposants: "~700 partenaires (édition précédente)",
+      visiteurs: "~20 000 participants (édition précédente)",
+      paysRep: "Non communiqué",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "forum-incyber.com, 2026",
+      acces: "Badge professionnel – europe.forum-incyber.com",
+      exposer: "Dossier partenaire sur europe.forum-incyber.com",
+      logistique: "Gare : Lille Europe (1 h depuis Paris en TGV). Aéroport : Lille-Lesquin (LIL). Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Premier rendez-vous cyber européen, à une heure du bureau Novostok de Paris. Thème 2027 centré sur l'IA agentique : aligné avec l'offre IA et cybersécurité.",
+      lien: "https://europe.forum-incyber.com/",
+      aConfirmer: ["Programme 2027", "Tarif partenaire", "Possibilité de prise de parole"]
+    },
+    {
+      id: 111,
+      nom: "GITEX Africa Morocco 2027",
+      edition: "5e édition",
+      priorite: "Stratégique",
+      tags: ["Technologie", "Cybersécurité", "Maroc"],
+      statut: "confirmé",
+      dateDebut: "2027-04-26",
+      dateFin: "2027-04-28",
+      ville: "Marrakech",
+      pays: "Maroc",
+      zone: "Maroc",
+      lieu: "Marrakech – site exact à confirmer",
+      adresse: "Marrakech, Maroc",
+      organisateur: "KAOUN International (organisateur de GITEX)",
+      patronage: "À confirmer",
+      frequence: "Annuelle",
+      perimetre: "Afrique – économie numérique, IA, cybersécurité",
+      secteurs: ["Intelligence artificielle", "Cybersécurité", "Startups", "Infrastructures numériques"],
+      themes: ["Accélérer l'économie numérique africaine à l'ère de l'IA", "Cybersécurité", "Investissement tech"],
+      publicVise: "Décideurs publics et privés, investisseurs, startups, intégrateurs",
+      exposants: "1 600+ exposants et startups (objectif 2027)",
+      visiteurs: "60 000 (objectif 2027)",
+      paysRep: "150+ (objectif 2027)",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "financialafrik.com, 2026",
+      acces: "Badge professionnel – gitexafrica.com",
+      exposer: "Stand Novostok prévu",
+      logistique: "Aéroport : Marrakech-Menara (RAK). Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Exposer un stand",
+      justification: "Novostok y expose en 2027. Plus grand salon tech d'Afrique, au Maroc : volume maximal de prospects et de partenaires pour l'offre IA et cybersécurité.",
+      lien: "https://gitexafrica.com/",
+      aConfirmer: ["Site exact à Marrakech", "Emplacement et surface du stand Novostok", "Programme conférences cybersécurité et IA"]
+    },
+    {
+      id: 112,
+      nom: "GISEC Global 2027",
+      edition: "Édition 2027",
+      priorite: "Haute",
+      tags: ["Cybersécurité", "Technologie", "Golfe"],
+      statut: "à confirmer",
+      dateDebut: "2027-05-04",
+      dateFin: "2027-05-06",
+      ville: "Dubaï",
+      pays: "Émirats arabes unis",
+      zone: "International",
+      lieu: "Dubai Exhibition Centre (DEC), Expo City",
+      adresse: "Expo Road, Dubai South, Dubaï, Émirats arabes unis",
+      organisateur: "GISEC – organisateur officiel (gisec.ae)",
+      patronage: "À confirmer",
+      frequence: "Annuelle",
+      perimetre: "Moyen-Orient et Afrique – cybersécurité",
+      secteurs: ["Cybersécurité", "Sécurité du cloud", "Cyberdéfense", "Quantique"],
+      themes: ["Cyber-résilience", "Menaces liées à l'IA", "Agences gouvernementales"],
+      publicVise: "RSSI, agences gouvernementales, éditeurs, intégrateurs",
+      exposants: "Non communiqué",
+      visiteurs: "~25 000 attendus (édition 2026)",
+      paysRep: "120 (édition 2026)",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "gisec.ae / zawya.com, 2026",
+      acces: "Badge professionnel – gisec.ae",
+      exposer: "Dossier exposant sur gisec.ae",
+      logistique: "Aéroports : Al Maktoum International (DWC) et Dubaï International (DXB). Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Plus grand rassemblement cybersécurité du Moyen-Orient et d'Afrique, à Dubaï, ville du bureau Novostok. Accès direct aux RSSI et agences gouvernementales de la région.",
+      lien: "https://gisec.ae/",
+      aConfirmer: ["Dates confirmées sur gisec.ae (relevées sur un annuaire)", "Tarif badge", "Programme 2027"]
+    },
+    {
+      id: 113,
+      nom: "SIT Africa Forum 2027",
+      edition: "14e édition (à confirmer)",
+      priorite: "Stratégique",
+      tags: ["Cybersécurité", "Technologie", "Afrique francophone"],
+      statut: "confirmé",
+      dateDebut: "2027-06-08",
+      dateFin: "2027-06-11",
+      ville: "Marrakech",
+      pays: "Maroc",
+      zone: "Maroc",
+      lieu: "Marrakech – lieu à confirmer",
+      adresse: "Marrakech, Maroc",
+      organisateur: "XCOM",
+      patronage: "À confirmer",
+      frequence: "Annuelle",
+      perimetre: "Afrique francophone – CISOs & éditeurs cybersécurité",
+      secteurs: ["Cybersécurité", "Cloud", "Intelligence artificielle", "Identité numérique"],
+      themes: ["Cyber-risques", "Protection des données", "Cloud sécurisé", "IA & cybersécurité"],
+      publicVise: "DSI, RSSI, Directeurs IT, éditeurs de solutions de cybersécurité",
+      exposants: "70+ éditeurs (édition 2026)",
+      visiteurs: "350+ décideurs africains (édition 2026)",
+      paysRep: "Maroc, Sénégal, Côte d'Ivoire, Cameroun et +",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "wearetech.africa, 2026",
+      acces: "Sur invitation / badge professionnel – réservé aux RSSI et DSI",
+      exposer: "Dossier exposant B2B – contacter XCOM via sit.africa",
+      logistique: "Aéroport : Marrakech-Menara (RAK). Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Exposer un stand",
+      justification: "Événement de référence pour les décideurs cyber d'Afrique francophone, alignement direct avec l'offre Novostok IA & cybersécurité. Format fermé avec rendez-vous programmés : meilleur rapport effort-résultat.",
+      lien: "https://sit.africa/",
+      aConfirmer: ["Lieu 2027", "Tarif stand exposant 2027", "Programme détaillé 2027"]
+    },
+    {
+      id: 114,
+      nom: "Caravan Salon Düsseldorf 2027",
+      edition: "Édition 2027",
+      priorite: "Moyenne",
+      tags: ["Sécurité VDL", "Véhicules de loisirs"],
+      statut: "à confirmer",
+      dateDebut: "2027-08-27",
+      dateFin: "2027-09-05",
+      ville: "Düsseldorf",
+      pays: "Allemagne",
+      zone: "International",
+      lieu: "Messe Düsseldorf",
+      adresse: "Stockumer Kirchstraße 61, 40474 Düsseldorf, Allemagne",
+      organisateur: "Messe Düsseldorf GmbH",
+      patronage: "CARAVANING INDUSTRIE VERBAND (CIVD)",
+      frequence: "Annuelle",
+      perimetre: "Mondial – camping-cars, caravanes, vans aménagés",
+      secteurs: ["Véhicules de loisirs", "Accessoires VDL", "Sécurité anti-vol", "Technologies embarquées"],
+      themes: ["Sécurité & traçabilité", "Connectivité embarquée", "Mobilité électrique"],
+      publicVise: "Fabricants VDL, accessoiristes, assureurs, distributeurs, grand public",
+      exposants: "600+ (éditions précédentes)",
+      visiteurs: "250 000+",
+      paysRep: "30+",
+      delegations: "Non communiqué",
+      surface: "220 000 m² (édition 2025)",
+      sourceChiffres: "Messe Düsseldorf, 2025",
+      acces: "Billet grand public ou badge professionnel – caravansalon.de",
+      exposer: "Stand disponible – dossier exposant sur caravansalon.de",
+      logistique: "Aéroport : Düsseldorf International (DUS – 10 min). Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Référence mondiale VDL pour identifier les équipementiers ciblant la sécurité des véhicules de loisirs et nouer des partenariats avec les acteurs clés du secteur.",
+      lien: "https://www.caravansalon.de/",
+      aConfirmer: ["Dates exactes sur caravansalon.de (relevées sur un agrégateur)", "Espace dédié sécurité / anti-vol / GPS VDL", "Conditions badge professionnel"]
+    },
+    {
+      id: 115,
+      nom: "GSX 2027 – Global Security Exchange",
+      edition: "Édition 2027",
+      priorite: "Haute",
+      tags: ["Sécurité", "Technologie", "Cybersécurité"],
+      statut: "confirmé",
+      dateDebut: "2027-09-20",
+      dateFin: "2027-09-22",
+      ville: "Orlando, Floride",
+      pays: "États-Unis",
+      zone: "International",
+      lieu: "Orlando – lieu exact à confirmer",
+      adresse: "Orlando, Floride, États-Unis",
+      organisateur: "ASIS International",
+      patronage: "À confirmer",
+      frequence: "Annuelle",
+      perimetre: "Mondial – sûreté d'entreprise, sécurité physique et cyber",
+      secteurs: ["Sécurité physique", "Cybersécurité", "Gestion des risques", "Sûreté d'entreprise"],
+      themes: ["Convergence sécurité physique et cyber", "Gestion des risques", "Technologies de sûreté"],
+      publicVise: "Directeurs sûreté, RSSI, intégrateurs, consultants sécurité",
+      exposants: "Non communiqué",
+      visiteurs: "Non communiqué",
+      paysRep: "Non communiqué",
+      delegations: "Non communiqué",
+      surface: "Non communiqué",
+      sourceChiffres: "gsx.org, 2026",
+      acces: "Badge professionnel – gsx.org",
+      exposer: "Dossier exposant sur gsx.org",
+      logistique: "Aéroport : Orlando International (MCO). Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Plus grand salon mondial de la sûreté d'entreprise, organisé par ASIS. Veille sur les solutions de sécurité physique et cyber convergentes.",
+      lien: "https://www.gsx.org/",
+      aConfirmer: ["Lieu exact à Orlando", "Chiffres de l'édition 2026", "Tarif badge"]
+    },
+    {
+      id: 116,
+      nom: "Milipol Paris 2027",
+      edition: "25e édition",
+      priorite: "Haute",
+      tags: ["Sécurité intérieure", "Défense", "Technologie"],
+      statut: "confirmé",
+      dateDebut: "2027-11-16",
+      dateFin: "2027-11-19",
+      ville: "Paris",
+      pays: "France",
+      zone: "International",
+      lieu: "Paris Nord Villepinte",
+      adresse: "ZAC Paris Nord 2, 93420 Villepinte, France",
+      organisateur: "GIE Milipol",
+      patronage: "Ministère de l'Intérieur (France)",
+      frequence: "Biennale (années impaires)",
+      perimetre: "Mondial – sécurité intérieure des États",
+      secteurs: ["Sécurité intérieure", "Cybersécurité", "Gestion de crise", "Surveillance"],
+      themes: ["Sécurité intérieure", "Protection des sites sensibles", "Cybersécurité", "IA appliquée à la sécurité"],
+      publicVise: "Forces de sécurité, ministères de l'Intérieur, industriels, délégations officielles",
+      exposants: "1 171 (édition 2025)",
+      visiteurs: "32 000+ (édition 2025)",
+      paysRep: "160 (édition 2025)",
+      delegations: "163 délégations officielles (édition 2025)",
+      surface: "Non communiqué",
+      sourceChiffres: "milipol.com, 2025",
+      acces: "Badge professionnel – milipol.com",
+      exposer: "Réservations de stand déjà ouvertes – milipol.com",
+      logistique: "Aéroport : Paris-CDG (15 min). RER B station Parc des Expositions. Hôtels : à réserver dès l'ouverture des inscriptions, forte demande pendant le salon.",
+      recommandation: "Visiter",
+      justification: "Salon mondial de la sécurité intérieure, près du bureau Novostok de Paris. Forte présence de délégations africaines. Si stand envisagé, décision à prendre avant l'été 2027.",
+      lien: "https://www.milipol.com/fr-FR/",
+      aConfirmer: ["Tarif stand 2027", "Programme conférences", "Délégations africaines attendues"]
+    }
+  ];
+
+  // Une seule frise 2026-2027 : filtres et compteurs portent sur l'ensemble
+  EVENTS = EVENTS.concat(DEFENSE_2027, AUTRES_2027);
+
   // ========== UTILS ==========
   function parseDate(str) {
     var parts = str.split('-');
@@ -1859,9 +2139,10 @@
   }
 
   // ========== FILTERS ==========
-  var activeFilters = { zone: 'all', theme: 'all', priorite: 'all' };
+  var activeFilters = { annee: 'all', zone: 'all', theme: 'all', priorite: 'all' };
 
   function eventMatchesFilters(ev) {
+    if (activeFilters.annee !== 'all' && ev.dateDebut.slice(0, 4) !== activeFilters.annee) return false;
     if (activeFilters.zone !== 'all' && ev.zone !== activeFilters.zone) return false;
     if (activeFilters.priorite !== 'all' && ev.priorite !== activeFilters.priorite) return false;
     if (activeFilters.theme !== 'all') {
@@ -1875,11 +2156,7 @@
       var match = false;
       var targets = themeMap[activeFilters.theme] || [activeFilters.theme];
       for (var i = 0; i < ev.tags.length; i++) {
-        for (var j = 0; j < targets.length; j++) {
-          if (ev.tags[i].indexOf(targets[j]) >= 0 || targets[j].indexOf(ev.tags[i]) >= 0) {
-            match = true;
-          }
-        }
+        if (targets.indexOf(ev.tags[i]) >= 0) { match = true; }
       }
       if (!match) return false;
     }
@@ -1953,24 +2230,13 @@
       return;
     }
     noResults.style.display = 'none';
+    filtered.sort(function(a, b) { return parseDate(a.dateDebut) - parseDate(b.dateDebut); });
     renderGroups(timeline, filtered);
-  }
-
-  function renderDefense() {
-    var list = DEFENSE_2027.slice().sort(function(a,b){ return parseDate(a.dateDebut) - parseDate(b.dateDebut); });
-    var container = document.getElementById('timeline-defense');
-    container.innerHTML = '';
-    renderGroups(container, list);
-
-    var confirmes = list.filter(function(e){ return e.statut === 'confirmé'; }).length;
-    var veille = document.querySelectorAll('#defense-veille li').length;
-    document.getElementById('defense-resume').textContent =
-      list.length + ' salons datés · ' + confirmes + ' dates confirmées · ' + veille + ' en veille';
   }
 
   // ========== MODAL ==========
   function openModal(id) {
-    var ev = EVENTS.concat(DEFENSE_2027).find(function(e) { return e.id === id; });
+    var ev = EVENTS.find(function(e) { return e.id === id; });
     if (!ev) return;
 
     // Badges
@@ -2043,9 +2309,10 @@
     var today = new Date();
     today.setHours(0,0,0,0);
 
-    var total = EVENTS.length;
-    var maroc = EVENTS.filter(function(e){ return e.zone === 'Maroc'; }).length;
-    var strat = EVENTS.filter(function(e){ return e.priorite === 'Stratégique'; }).length;
+    var aVenir = EVENTS.filter(function(e){ return parseDate(e.dateFin) >= today; });
+    var total = aVenir.length;
+    var maroc = aVenir.filter(function(e){ return e.zone === 'Maroc'; }).length;
+    var strat = aVenir.filter(function(e){ return e.priorite === 'Stratégique'; }).length;
 
     document.getElementById('kpi-total').textContent = total;
     document.getElementById('kpi-maroc').textContent = maroc;
@@ -2061,6 +2328,22 @@
       document.getElementById('kpi-prochain-nom').textContent = next.nom;
     }
   }
+
+  // ========== RACCOURCI DÉFENSE 2027 ==========
+  function setFilters(values) {
+    Object.keys(activeFilters).forEach(function(type) {
+      activeFilters[type] = values[type] || 'all';
+      document.querySelectorAll('[data-filter="' + type + '"]').forEach(function(b) {
+        b.classList.toggle('active', b.getAttribute('data-value') === activeFilters[type]);
+      });
+    });
+    renderTimeline();
+  }
+
+  document.getElementById('raccourci-defense-2027').addEventListener('click', function() {
+    setFilters({ annee: '2027', theme: 'Défense' });
+    document.getElementById('timeline').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
   // ========== FILTER BUTTONS ==========
   document.querySelectorAll('.filter-btn').forEach(function(btn) {
@@ -2089,7 +2372,6 @@
   // ========== INIT ==========
   updateKPIs();
   renderTimeline();
-  renderDefense();
 </script>
 </body>
 </html>
